@@ -1,0 +1,926 @@
+@import "reset.css";
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-size: 13px;    
+    min-width: 1350px; 
+    overflow: auto;
+    background: #3399ff;
+}
+
+/*{outline: 1px solid black;}*/
+
+#wrapper_parent
+{
+	margin: 0 auto;
+	height: 1000px;
+	background: white;
+	width: 1000px;
+	position: relative;
+	box-shadow: 0 0 5px blue;
+}
+
+#wrapper
+{
+/*    height: 4025px;                                                    /* длинна страницы */
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#dno {
+    height: 50px;
+    content: '';
+}
+  
+/*Шапка*/
+
+#header{
+    height: 150px;
+}
+
+#headerLogo{
+    position: absolute;
+    left: 50px;
+    top: 25px;
+    float: left;
+}
+
+.letterSpace {
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+#headerAdress {
+    position: absolute;
+    left: 380px;
+    top: 40px;
+    float: left; 
+    text-align: center;
+}
+
+.headerIconUpper {
+    display: block;
+    margin-bottom: 10px; 
+}
+
+.headerIconString, .headerIconImg {
+    margin-right: 10px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#headerContact{
+    position: absolute;
+    left: 770px;
+    top: 30px;
+    float: right; 
+    font-size: 16px;
+}
+
+#headerPost{
+    font-size: 14px;
+}
+
+/*Меню*/
+
+#navigation{
+    height: 40px;
+}
+
+#nav{
+    display: inline-block;
+    width: 1000px;
+    box-shadow: 0 2px 2px #777;
+    background: #fff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ccc 0%, #fff 100%); /* FF3.6+ */
+    background: -webkit-linear-gradient(top,  #ccc 0%,#fff 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ccc 0%,#fff 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ccc 0%,#fff 100%); /* IE10+ */
+}
+
+#nav li{
+    display: inline-block;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    width:  141px;    /* default 141 */
+    text-align: center;
+    border-right: 1px solid transparent;
+    background: #fff;
+    margin-right: 1px;
+}
+
+#nav li:last-of-type {
+   border-right: none; 
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+#nav li a:hover {color: #3399ff;}
+
+#nav li a.glav{padding: 10px 40px;}
+#nav li a.uslu{padding: 10px 45px;}
+#nav li a.rasp{padding: 10px 25px;}
+#nav li a.ceny{padding: 10px 50px;}
+#nav li a.foto{padding: 10px 21px;}
+#nav li a.part{padding: 10px 18px;}
+#nav li a.cont{padding: 10px 36px;}
+
+
+/*
+#nav li a.glav{padding: 10px 40px;}
+#nav li a.uslu{padding: 10px 45px;}
+#nav li a.rasp{padding: 10px 25px;}
+#nav li a.ceny{padding: 10px 50px;}
+#nav li a.foto{padding: 10px 21px;}
+/*		#nav li a.voot{padding: 10px 18px;}			*/
+/*#nav li a.cont{padding: 10px 36px;} */
+
+
+
+/*Слайд*/
+
+#slideshow {
+    margin-top: 40px;
+    position: relative;
+    height: 450px;
+}
+
+#slideshow img {
+    position:absolute;
+    top:0;
+    left:0;
+    box-shadow: 0 2px 2px #777;
+}
+
+.slideImg{
+    margin: 0 100px;
+    clear: both;
+    border-radius: 5px;
+}
+
+#slideImg1 { z-index: 4;}
+#slideImg2 { z-index: 3;}
+#slideImg3 { z-index: 2;}
+#slideImg4 { z-index: 1;}
+
+#slideLegend{
+    position: absolute;
+    left: 100px;
+    top: 350px;
+    width: 800px;
+    height: 40px;
+    background: rgba(0,0,0,.5);
+    text-align: center;
+    color: white;
+    letter-spacing: 1px;
+    line-height: 40px;
+    z-index:11;
+}
+
+#cirlceWrap {
+    width: 120px;
+    margin-left: 470px;
+    margin-top: 400px;
+    position: absolute;
+}
+
+.circle{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px #777;
+    margin-top: 20px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.blue{background: #3399ff;}
+
+/*Контент левый*/
+
+#content {
+   margin-top: 3px;
+   height: 3400px;;                                                   /* нижняя строка */
+	margin-bottom: 230px;
+}
+
+#left{
+    float: left;
+    width: 580px;
+    margin-left: 50px;
+    height: 850px;
+}
+
+#right{
+    float: right;
+    width: 275px;
+    margin-right: 50px;
+    height: 850px;
+}
+#rightString{
+    float: right;
+    width: 275px;
+    margin-right: 50px;
+    height: 20px;
+}
+
+#privet {
+    height: 150px;    
+    text-align: justify;    
+    ify;}
+
+.zagolovok {
+    font-size: 18px;
+    color: #3399ff;
+    
+    /* 3a2e94  #3399ff - оригинальный цвет*/
+}
+
+.dogovorAdult {
+    font-size: 14px;
+    color: #3399ff;
+    color: green;
+    font-weight: bold;
+       
+    /* 3a2e94  #3399ff - оригинальный цвет*/
+}
+
+.dogovorChildren {
+    font-size: 14px;
+    color: #3399ff;
+    color: orange;
+    font-weight: bold;
+       
+    /* 3a2e94  #3399ff - оригинальный цвет*/
+}
+
+#mainImages {
+    margin: 20px 0 0 0;    
+}
+
+.mainImg {
+    box-shadow: 0 2px 2px #777;
+}
+
+#mainImgName {
+    margin: 10px auto;
+    color: #3399ff;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+
+.mainServise {
+            clear: both;
+            height: 110px;
+            margin-bottom: 40px;
+}
+ 
+.mainServiseLeft, .galleryLeft{
+    float: left;
+    display: inline-block;
+}
+
+.mainServiseRight{
+    display: inline-block;
+    margin: -2px 20px;
+}
+
+.blueSpan {color: #3399ff;}
+
+.logoSpan {color: #3a2e94;}
+
+.boldSpan {font-weight: bold;}
+
+.smallSpan {color: #3399ff; font-size: 10px;}
+
+.linkSpan:hover {text-decoration: underline;}
+
+
+/*Контент правый*/
+
+#today {margin-bottom: 50px;}
+
+form {position: relative;}
+    
+#qName, #qPhone, #qEmail {
+    height: 30px;
+    width: 250px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    border-top: solid 1px #aaa;
+    padding: 0 5px;
+}
+
+#qVopros{
+    height: 100px;
+    width: 250px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font: Arial 12px;
+    resize: none;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    border-top: solid 1px #aaa;
+    padding: 5px;
+}
+
+input[type=image]#qSubmit{
+    height: 30px;
+    width: 150px;
+    margin-left: 50px;
+    box-shadow: 0 2px 2px #777;
+    border-radius: 5px;
+}
+
+/*Подвал*/
+
+#footer {
+    margin: 30px 40px 0 50px;
+    padding-top: 20px;
+    height: 45px;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    color: #777;
+}
+
+#footer1, #footer2, #footer3{
+    display: inline-block;
+    float: left;
+}
+
+#footer1 {margin-top: 5px;}
+#footer2{margin-left: 75px;}
+#footer3{margin: 5px 0 0 75px;}
+
+.footerImg {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#footerMenu li{
+    display: inline-block;
+    padding: 0 7px;
+}
+
+#footerMenu li a{color: #777;}
+#footerMenu li a:hover{color: #3399ff;}
+
+
+/*---Страница "Новости"---*/
+
+#wrapperNews{
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 2800px; /*2800px*/      		           /* длинна */
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentNews {
+    margin-top: 20px;
+    height: 2500px;/*2500px*/					                 /* длинна */
+}
+
+#leftNews{
+    float: left;
+    width: 580px;
+    margin-left: 50px;
+    height: auto;/*1040px*/
+}
+
+#rightNews{
+    float: right;
+    width: 275px;
+    margin-right: 50px;
+    height: auto;/*840px*/
+    font-weight: bold;
+}
+
+#NewsText {
+    margin-right: 20px; 
+    height: auto; /*800px*/
+    outline: 1px solid red;
+    font-weight: bold;
+}
+
+#pages {margin-top: 5px;}
+
+.pageButtons {
+    text-align: center;
+}
+
+.pageButtons li {
+    display: inline-block;
+    height: 18px;
+    width: 20px;
+    text-align: center;
+    padding-top: 2px;
+}
+
+.pageButton{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.pageButton.pageActive{
+    border-radius: 15px;
+    background: #3399ff;
+    color: white;
+    text-decoration: none;
+    box-shadow: inset 0 1px 1px #777;
+}
+
+.pageActive a{
+    cursor: default;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0px 1px 0 rgba(0, 0, 0, 0.25);
+    margin-top: 10px;
+}
+
+#newsPhoto {margin-bottom: 50px;}
+
+.newsImg {
+    margin-bottom: 30px;
+    box-shadow: 0 2px 2px #777;
+}
+
+
+/*---Страница "Услуги"---*/
+
+#wrapperServ{
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1025px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentServ {
+    margin-top: 40px;
+    height: 690px; /*690px*/
+    margin-left: 50px;
+}
+
+.serviseServ {
+    clear: both;
+    height: 275px;
+    margin-bottom: 40px;
+}
+ 
+.serviseServLeft{
+    float: left;
+    display: inline-block;
+}
+
+.serviseServRight{
+    display: inline-block;
+    margin: -2px 40px;
+}
+
+.serviseServ p, .adultServ p, .childrenServ p, partnersServ p {
+    width: 560px;
+    margin-top: 0px;
+}
+
+.bigSpan {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.smallSpan {
+    font-size: 12px;
+}
+
+
+/*---Страница "Правила посещения"---*/
+
+#wrapperRules{
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: auto;/*475px*/
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentRules {
+    margin-top: 40px;
+    margin-left: 50px;
+    height: auto;/*550px*/
+}
+
+.rulesText {
+	 display: inline-block;
+    margin: -2px 0 0 40px;
+    width: 800px;
+
+}
+
+/*---Страница "Взрослый клуб"---*/
+
+#wrapperAdult{
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1875px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentAdult {
+    margin-top: 40px;
+    margin-left: 50px;
+    height: 1550px;
+}
+
+input[type=image]#adSubmit{
+    height: 30px;
+    width: 150px;
+    box-shadow: 0 2px 2px #777;
+    border-radius: 5px;
+}
+
+.adultServ, .childrenServ {
+    clear: both;
+    height: 290px;
+    margin-bottom: 40px;
+}
+ 
+.adultLeft, .childrenLeft, .partnersLeft {
+    float: left;
+    display: inline-block;
+}
+
+.adultRight, .childrenRight, .partnersRight {
+    display: inline-block;
+    margin: -2px 0 0 40px;
+    width: 550px;
+}
+
+
+/*---Страница "Детский клуб"---*/
+
+#wrapperChild {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 3425px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentChild {
+    margin-top: 40px;
+    height: 3100px;
+    margin-left: 50px;
+}
+
+
+/*---Страница "Расписание"---*/
+
+#wrapperSchedule {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1525px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentSchedule {
+    margin-top: 40px;
+    height: 1200px;
+    margin-left: 50px;
+}
+
+#tableSchedule {margin: 0 0 40px 0;}
+
+#tableSchedule th{
+    height: 30px;
+    background: #3399ff;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #3399ff;
+}
+
+#tableSchedule td{
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    width: 90px;
+    border: 1px solid #3399ff;
+    padding: 3px;
+}
+
+#tableSchedule tr td:first-child {width: 210px;}
+
+
+/*---Страница "Цены"---*/
+
+#wrapperPrice {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1025px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentPrice {
+    margin-top: 40px;
+    height: 700px;
+    margin-left: 50px;
+    position: relative;
+}
+
+#pricelist{
+    position: absolute;
+    top: 0;
+    right:100px;
+}
+
+#pricelist a:hover {
+    color: #3399ff;
+}
+
+.downloadImg {
+    width: 20px;
+    height: 20px;
+}
+
+#tablePrice {margin: 0 0 40px 50px;}
+
+#tablePrice th{
+    height: 30px;
+    background: #3399ff;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px solid #3399ff;
+}
+
+
+#tablePrice td{
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    width: 90px;
+    border: 1px solid #3399ff;
+}
+
+#tablePrice tr th:first-child {
+    width: 350px;
+}
+
+
+/*---Страница "Галерея"---*/
+
+#wrapperGallery {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 725px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentGallery {
+    margin-top: 40px;
+    height: 400px;
+    margin-left: 50px;
+}
+
+.galleryDiv{
+    clear: both;
+    margin-bottom: 40px;
+    height: 275px;
+}
+
+.galleryLeft {
+    width: 300px;
+    margin-right: 10px;
+}
+
+.galleryImg {box-shadow: 0 2px 2px #777;}
+
+.galleryImgName {margin: 10px 0px;}
+
+/*---Страница "Фотоальбом"---*/
+
+#wrapperPhotoAlbum {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 975px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentPhotoAlbum {
+    margin-top: 40px;
+    height: 650px;
+    margin-left: 50px;
+}
+
+
+/*---Страница "Фотогалерея"---*/
+
+#wrapperPhotoGallery {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1125px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentPhotoGallery {
+    margin-top: 40px;
+    height: 800px;
+    margin-left: 50px;
+}
+
+
+/*---Страница "Видеозаписи"---*/
+
+#wrapperVideo {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 2025px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentVideo {
+    margin-top: 40px;
+    height: 1700px;
+    margin-left: 50px;
+}
+
+.videoDiv{
+    clear: both;
+    margin-bottom: 40px;
+    height: 275px;
+}
+
+.videoLeft {
+    width: 300px;
+    margin-right: 10px;
+}
+
+.videoImg {box-shadow: 0 2px 2px #777;}
+
+.videoImgName {margin: 10px 0px;}
+
+
+/*---Страница "Партнеры"---*/
+
+#wrapperPartners {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1200px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentPartners {
+    margin-top: 40px;
+    height: 875px;
+    margin-left: 50px;
+}
+
+#leftPartners{
+    float: left;
+    width: 600px;
+    margin-left: 50px;
+    height: 600px;
+}
+
+#rightPartners{
+    float: right;
+    width: 275px;
+    margin-right: 50px;
+    height: 500px;
+}
+
+#partnersText {margin-right: 20px;}
+
+.partnersImg {
+    margin-right: 20px;
+    float: left;
+}
+
+.partner{
+height: 210px;
+}
+
+
+
+
+/*---Страница "Вопрос-ответ"---*/
+
+#wrapperFaq {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 925px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentFaq {
+    margin-top: 40px;
+    height: 600px;
+}
+
+#leftFaq, #leftContact{
+    float: left;
+    width: 600px;
+    margin-left: 50px;
+    height: 600px;
+}
+
+#rightFaq, #rightContact{
+    float: right;
+    width: 275px;
+    margin-right: 50px;
+    height: 500px;
+}
+
+#faqText {margin-right: 20px;}
+
+.faqImg {
+    margin-right: 20px;
+    float: left;
+}
+
+
+/*---Страница "Контакты"---*/
+
+#wrapperContact {
+    margin: 0 auto;
+    background: white;
+    width: 1000px;
+    height: 1100px;
+    position: relative;
+    box-shadow: 0 0 5px blue;
+}
+
+#contentContact {
+    margin-top: 40px;
+    height: 775px;
+}
+
+#rekvizit {height: 95px;}
+
+#rekvizitIcon1, #rekvizitIcon2, #rekvizitIcon3
+{
+    display: inline-block;
+    float: left;
+    width: 190px;
+    font-size: 12px;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.rekvizitIconUpper,.rekvizitIconString, .rekvizitIconImg {
+    margin-right: 10px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#rekvizitMap {
+    margin-top: 50px;
+}
+
+.rekvizitMapImg {
+    margin-top: 10px;
+}
+
+#yula {
+    position: absolute;
+    bottom: 90px;
+    right: 50px;
+}

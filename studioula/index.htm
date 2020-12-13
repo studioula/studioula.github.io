@@ -1,0 +1,803 @@
+﻿<!DOCTYPE HTML>
+
+<!-- head>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head -->
+
+<head>
+   
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+    <!--  jCarousel library-->
+    <script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+    <!--  jCarousel skin stylesheets-->
+    <link rel="stylesheet" type="text/css" href="js/skins/tango/skin.css" />
+    <link rel="stylesheet" type="text/css" href="js/skins/tango/skin1.css" />
+
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script type="text/javascript">
+
+(jQuery(document).ready(function() {
+/*var count = $('#slideshow img').length;*/
+var array = ['ЙОГА ДЛЯ БЕРЕМЕННЫХ','ЙОГА','ФИТНЕС', 'ПОДВИЖНЫЕ ИГРЫ И ТАНЦЫ', 'ПРОВЕДЕНИЕ ДЕСТКИХ ПРАЗДНИКОВ']
+var count = 5;
+var circles = 5;
+var i = 0;
+
+var slider = function(ind) {
+$('#slideshow img').eq(i).animate({'opacity': 0} , 500);
+$('#cirlceWrap div').eq(i++).removeClass('blue');
+
+if(ind != undefined) {
+i = ind;
+}
+
+if(i == count) {
+i = 0;
+}
+
+$('#slideshow  img').eq(i).animate({'opacity': 1} , 500);
+$('#cirlceWrap div').eq(i).addClass('blue');
+$('#slideLegend').html(array[i]);
+}
+
+var changeElement = setInterval(slider, 2000);
+
+$('#cirlceWrap div').click(function(){
+clearInterval(changeElement);
+slider($(this).index());
+changeElement = setInterval(slider, 2000);
+});
+}))
+
+</script>
+
+<title>Фитнес-студия "Юла"</title>
+
+</head>
+
+<body>
+
+
+<!-- GOOGLE -->
+<?php include_once("analyticstracking.php") ?>
+<!-- GOOGLE -->
+
+
+
+<!-- GOOGLE -->
+<?php include_once("analyticstracking.php") ?>
+<!-- GOOGLE -->
+
+<div id="wrapper_parent">
+<div id="wrapper">
+
+
+
+<div id="header">
+    <div id="headerLogo"><a href="index.htm"><img src="images/logo.png" alt='Финтес-студия "Юла"'/></a>
+<!--    <div><span class="logoSpan letterSpace">фитнес-студия</span></div>	--> </div>
+    <div id="headerAdress">
+        <span class="headerIconUpper"><span class="headerIconImg">
+        <img class="headerGeoImg" src="images/geo.png" alt="Адрес"/></span>
+        <span class="headerIconString"> <a href="https://www.google.com/maps/d/u/0/viewer?mid=zukgMyIWl_gw.k2gNleM-qAzI">г. Гомель, ул. Лазурная, 	26</a></span></span>
+        <span class="headerIconImg">
+        <img class="headerGeoImg" src="images/geo.png" alt="Адрес"/></span>
+        <span class="headerIconString"><a href="https://goo.gl/maps/JZvLWJ2kdFP2"><span class="headerIconUpper">г. Гомель, ул. 	Севастопольская, 61а</a></span></span>
+    </div>
+    <div id="headerContact">
+        <span class="headerIconUpper"><span class="headerIconImg">
+        <img class="headerGeoImg" src="images/velcom.png" alt="Велком"/></span>
+        <span class="headerIconString">+375 29 <strong>333-44-64</strong></span></span>
+        <span class="headerIconUpper"><span class="headerIconImg">
+<!--        <img class="headerGeoImg" src="images/mts.png" alt="МТС"/></span>
+        <span class="headerIconString">+375 29 <strong>838-68-93</strong></span></span>
+        <span id="headerPost" class="headerIconUpper"><span class="headerIconImg">
+-->        <img class="headerGeoImg" src="images/post.png" alt="E-mail"/></span>
+        <a href="mailto:stydiya_ula@mail.ru"><span class="headerIconString">stydiya_ula@mail.ru</a></span></span>
+    </div>
+</div>
+
+<div id="navigation">
+  <ul id="nav">
+
+<li><a href="index.htm" class="glav">ГЛАВНАЯ</a></li><li><a href="service.htm" class="uslu">УСЛУГИ</a></li><li><a href="schedule.htm" class="rasp">РАСПИСАНИЕ</a></li><li><a href="price.htm" class="ceny">ЦЕНЫ</a></li><li><a href="gallery.htm" class="foto">ГАЛЕРЕЯ</a></li><li><a href="partners.htm" class="part">ПАРТНЕРЫ</a></li><li><a href="contact.htm" class="cont">КОНТАКТЫ</a></li><li><a href="blog/index.html" class="conta">БЛОГ</a></li>
+
+    </ul>
+</div>
+
+
+<div id="slideshow">
+    <img id="slideImg1" src="images/slide_pregn_yoga.jpg" alt="" class="slideImg"/>
+    <img id="slideImg2" src="images/slide2.jpg" alt="" class="slideImg"/>
+<!--    <img id="slideImg3" src="images/slide11.jpg" alt="" class="slideImg"/>		-->
+    	<img id="slideImg3" src="images/slide1.jpg" alt="" class="slideImg"/>
+	<img id="slideImg4" src="images/slide_podvizhki.jpg" alt="" class="slideImg"/>
+	<img id="slideImg5" src="images/slide_party.jpg" alt="" class="slideImg"/>
+    <div id="slideLegend">ЙОГА ДЛЯ БЕРЕМЕННЫХ</div>
+    <div id="cirlceWrap">
+        <div class="circle blue"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+</div>
+
+<div id="content">
+
+    <div id="left">
+
+        <div id="privet">
+            <span class="zagolovok"> Добро пожаловать к нам! </span> <br />
+            <p>
+Студия «Юла» - это коллектив профессионалов, которые любят свою работу. <br />
+Сегодня мы работаем в двух районах города Гомеля – Советском (ул. Лазурная, 26) и Новобелицком (ул. Севастопольская, 61а). <br />
+Наши занятия ориентированы на детей и взрослых. Занятия проводят квалифицированные специалисты. <br />
+У нас Вы сможете не только улучшить свое здоровье, но и организовать гармоничное развитие Вашего ребенка, а также найти совместные тренинги и мероприятия для всей семьи. <br />
+Мы развиваемся, растем и делаем это для Вас, для Вашего тела и души!<br /><br />
+ Будем рады Вас видеть у нас на занятиях!
+		</p>
+
+        </div>
+
+        <br />
+<br />
+        <div id="mainImages">
+        <span class="zagolovok"> Наши услуги </span> <br /><br />
+            <div class="mainServise">
+                <div class="mainServiseLeft">
+                    <a href="adult.htm"><img class="mainImg" src="images/vk.jpg" alt="Взрослый клуб"/> </a>
+                    <a id="mainImgName" class="blueSpan linkSpan" href="adult.htm">Взрослый клуб </a>
+                </div>
+		 <a href="adult.htm">
+                <div class="mainServiseRight"> <ul>В программу занятий для взрослых входит:
+                    <li> &nbsp; </li>
+                    <li>- комплексные фитнес-тренировки;</li>
+                    <li>- йога;</li>
+                    <li>- йога для беременных;</li>
+                    <li>- аквааэробика.</li>
+<!--                    <li>- восточные танцы.</li></ul>
+	-->
+			</a>
+                </div>
+            </div>
+            <div class="mainServise">
+                <div class="mainServiseLeft">
+                    <a href="children.htm"><img class="mainImg" src="images/dk.jpg" alt="Детский клуб"/> </a>
+                    <a id="mainImgName" class="blueSpan linkSpan" href="children.htm">Детский клуб </a>
+                </div>
+		<a href="children.htm">
+                <div class="mainServiseRight"> <ul>В программу занятий для детей входит:
+                    <li> &nbsp; </li>
+                    <li>- раннее развитие малышей (1-3 года),</li>
+                  <!--  <li>- плавание для малышей (3-6 лет),</li> -->
+                    <li>- подготовка к школе - экспресс курс!(5-7 лет),</li>
+
+                    <li>- английский язык (3-6 лет),</li>
+                    <li>- детская хореография (3-6 лет),</li>
+                    <li>- комплексное развитие - 2 часа без родителей (3-6 лет),</li>
+                    <li>- единоборства(офп) (3-6 лет),</li>
+                    <li>- детская акробатика (3,5-6 лет),</li>
+                   <!-- <li>- гимнастика ушу (5-10 лет),</li>
+                <li>- театральная студия творческого развития (6-11 лет).</li></ul>
+	-->
+			</a>
+                </div>
+	     </div>
+        </div>
+
+        <div id="news">
+            <span class="zagolovok"> Новости </span> <br />
+            <p><br />
+<p>
+            <span class="blueSpan">18 февраля 2018</span>
+            <span class="boldSpan">Изменение цен на наши услуги.</span>
+		<p>Обратите внимания на изменение цен на наши услуги в разделе "Цены"
+		 <p><br />
+			 <p><br />
+
+			<span class="blueSpan">28 августа 2017</span>
+            <span class="boldSpan">Расписание на полугодие.</span>
+		<p>Обратите внимание на предварительное расписание ближайшего полугодия в разделе "Расписание".
+На Лазурной идут наборы в детские и взрослые группы по:
+хореографии (3-6 лет),
+единоборствам( 3,5-6 лет),
+английскому языку (4-6 лет),
+оздоровительной йоге (18-100 лет),
+пилатесу(18-100 лет),
+йоге для беременных.
+
+На Севастопольской идут наборы только в детские группы по:
+раннему развитию(1-3 года),
+хореографии (3-6 лет),
+акробатике (3-6 лет),
+английскому языку(5-7 лет).
+
+			 <p><br />
+
+			<span class="blueSpan">20 августа 2017</span>
+            <span class="boldSpan">Наборы в группы на  2017-2018 год.</span>
+		<p>Уже идут наборы в детские группы по следующим направлениям: английский(4-6 лет), оздоровительная гимнастика и акробатика(3-6 лет), хореография( 3-6 лет),общая физическая подготовка с элементами единоборств(3-6 лет), ранее развитие(1-3 года).
+Для взрослых работают группы по оздоровительной йоге, пилатесу, а также группы для беременных.
+		 <p><br />
+			<p>
+            <span class="blueSpan">06 августа 2017</span>
+            <span class="boldSpan" Новые цены </span>
+		<p>Обратите внимания на изменение цен на наши услуги в разделе "Цены"
+		 <p><br />
+			<p>
+            <span class="blueSpan">05 апреля 2017</span>
+            <span class="boldSpan">Фото с семейного тактильно-танцевального тренинга в Юле.</span>
+		<p>Всем спасибо ! Берегити ваших родных! Будьте здоровы, любимы и счастливы! Ваша Юла:)
+		<a href="https://drive.google.com/drive/folders/0B_lbRvY8yftUbTE3eWhENEFtWnM"><img class="footerImg" src="images/arrow.jpg"></a><p>
+		 <p><br />
+         <p>
+            <span class="blueSpan">04 апреля 2017</span>
+            <span class="boldSpan">Новая группа  по гимнастике для беременных в Гомеле.</span>
+		<p>Милые будущие мамы! Идет набор в группу по гимнастике йоге для беременных. Предварительное расписание: вторник 17.15, суббота 11.15. Занятия будут проходить на Лазурной, 26. Ждем Вас с вашими малышами:)
+		<p>
+            <span class="blueSpan">03 апреля 2017</span>
+            <span class="boldSpan">Группа раннего развития на Лазурной - новый набор!</span>
+		<p>Ждем малышей от 1 года до 3 лет к нам на занятия. Качественно, индивидуально, с душой!
+		 <p><br />
+		 <p><br />
+			<p>
+		<span class="blueSpan">13 марта 2017</span>
+            <span class="boldSpan">Танцевально-тактильный тренинг для детейи родителей.</span>
+		<p>Субботним утром  18.03.17 у нас на Юле пройдет уникальное мероприятие — детско-родительский танцевально-тактильный тренинг. Это будет мероприятие, в котором на равных будут участвовать дети со своими мамами и папами. Взаимодействуя вместе в движении будем стараться  решать несколько задач: будем способствовать лучшему пониманию друг друга, установлению контакта, снятие психического напряжение, через тактильные игры, подкрепление интереса к здоровому образу жизни, закрепление здоровых ценностей, разжигания интереса к движению и творчеству.
+		 <p><br />
+
+
+		<span class="blueSpan">31 декабря 2016</span>
+            <span class="boldSpan">Фото с новогодних утренников в Юле.</span>
+		<p>Всем спасибо ! До встречи в новом году! Будьте здоровы, любимы и счастливы! Ваша Юла:)
+		<a href="https://drive.google.com/drive/folders/0B1KYeBTv5qU3OUZrV3RKM3NSYk0"><img class="footerImg" src="images/arrow.jpg"></a><p>
+
+		 <p><br />
+		<p>
+		<span class="blueSpan">31 октября 2016</span>
+            <span class="boldSpan">Развивающие занятия для детей 1 года в Гомеле.</span>
+		<p>Открыта группа раннего развития для малышей 1 года на Лазурной, 26.
+		 <p><br />
+		<span class="blueSpan">31 октября 2016</span>
+            <span class="boldSpan">Новые группы для детей.</span>
+		<p>Открыт набор детей в группу изучения английского языка для детей 4,5-5,5 лет!
+		 <p><br />
+<span class="blueSpan">2 сентября 2016</span>
+            <span class="boldSpan">Спортивные занятия для детей 4 - 12 лет в Гомеле.</span>
+		<p>Планируются набор групп по йоге и фитнесу для детей 4 - 12 лет !
+		 <p><br />
+
+<span class="blueSpan">1 сентября 2016</span>
+            <span class="boldSpan">Занятия для детей 1 - 7 лет в Советском районе.</span>
+		<p>Открыт набор в детские группы по раннему развитию(1 - 3 года) и хореографии(3 - 7 лет) в Советском районе.
+		 <p><br />
+
+<span class="blueSpan">31 августа 2016</span>
+            <span class="boldSpan">ФИтнес и йога в Гомеле.</span>
+		<p>Открыт набор во взрослые группы по фитнесу и хатха-йоге на Севастопольской, 61а и на Лазурной, 26.
+		 <p><br />
+
+ <span class="blueSpan">30 августа 2016</span>
+            <span class="boldSpan">Новые детские группы в Белице!</span>
+		<p>Открыт набор в детские группы по раннему развитию(1 - 3 года), хореографии(3 - 7 лет) и гимнастикt ушу(5 - 10 лет) в Белице!
+		 <p><br />
+
+		<span class="blueSpan">27 апреля 2016</span>
+    <span class="boldSpan">Новые цены..</span>
+         <p> Обратите внимания на новые цены, которые начинают действовать с 1 мая 2016 года.
+      <p><br />
+
+		<span class="blueSpan">27 апреля 2016</span>
+    <span class="boldSpan">Набор в группы!.</span>
+         <p> Друзья! Рады сообщить Вам, что идет набор в группу " Подготовка к школе" для детей 5 - 7 лет. Группа начнет заниматься в ближайшее время и будет "трудиться" и летом!
+Давайте расти вместе!:)
+      <p><br />
+
+ <span class="blueSpan">28 марта 2016</span>
+    <span class="boldSpan">Мы переехали!.</span>
+         <p> Теперь занятия проходят на Лазурной,26 и на Севастопольской 61а. Осуществляются набор в группы – раннее развитие, хореография, гимнастика ушу, английский для дошкольников, группа кратковременного пребывания, фитнес для взрослых, йога, йога для беременных.
+      <p><br />
+
+             <span class="blueSpan">30 декабря 2015</span>
+    <span class="boldSpan">Фото с новогодних утренников!.</span>
+        <p> Сылка для скачивания фото: https://drive.google.com/drive/u/0/folders/0B1KYeBTv5qU3MklEQVozTHVFcTQ
+      <p><br />
+
+
+    <span class="blueSpan">27 сентября 2015</span>
+    <span class="boldSpan">Новый учебный год-новое расписание.</span>
+        <p>Наборы в группы – раннее развитие, хореография, подготовка к школе, английский для школьников и дошкольников, группа кратковременного пребывания, фитнес для взрослых, йога, йога для беременных.
+      <p><br />
+
+    <span class="blueSpan">27 сентября 2015</span>
+    <span class="boldSpan">День города 2015.</span>
+        <p>Фотоотчет. Ползунковые бега<a href="https://drive.google.com/folderview?id=0B1KYeBTv5qU3X3BUc0JCQ1RVaDA&usp=sharing"><img class="footerImg" src="images/arrow.jpg"></a><p>
+      <p><br />
+
+    <span class="blueSpan">27 сентября 2015</span>
+    <span class="boldSpan">Фитнес для взрослых на Речецком проспекте с 1 октября!</span>
+        <p>Все подробности по телефону +375293334464
+      <p><br />
+
+    <span class="blueSpan">18 июня 2015</span>
+    <span class="boldSpan">Англоязычный летний лагерь для школьников.</span>
+        <p>С началом лета в студии еще одна новинка - англоязычный летний лагерь для школьников. Общение в лагере будет происходить только на английском языке. Преодолеваем языковой барьер, учимся говорить свободно. Форма обучения – игровая, каникулы ведь! Смена длится неделю - 20 академических часов. Ведется предварительная запись. Подробнее по телефону +375 29 333 44 64
+      <p><br />
+
+    <span class="blueSpan">18 Июня 2015</span>
+        <span class="boldSpan">Фотографии с летних утреников</span>
+    <p>Фотографии с утренника маленьких англичан<a href="https://drive.google.com/folderview?id=0BxJVAeTMaMWMfkc3MmR5TmQ3Z0tOaHhFVFhsbHRaWUZWa1EtNHd1VG1XaWUyS3lubm1yQW8&usp=drive_web"><img class="footerImg" src="images/arrow.jpg"></a><p>
+    <p>Фотографии с летнего бала<a href="https://drive.google.com/folderview?id=0B1KYeBTv5qU3NnFZVndha1p2bEE&usp=sharing"><img class="footerImg" src="images/arrow.jpg"></a><p><br />
+
+    <!--span class="blueSpan">18 Июня 2015</span>
+            <span class="boldSpan">Измение цен</span>
+        <p>С 25.06.2015 повышаются цены на наши услуги. Подробнее в разделе цен на нашем сайте.<p><br /-->
+
+    <span class="blueSpan">05 Мая 2015</span>
+            <span class="boldSpan">БЕСПЛАТНАЯ диагностика детского плоскостопия в студии "Юла"</span>
+        <p>В конце Мая студия "Юла" совместно с медицинским центром "Детский доктор" (ddg.by) в очередной раз проведет бесплатное тестирование деток с 3 до 7 лет на плоcкостопие и выявление ранних ортопедических патологий.
+         <p><br />
+
+    <span class="blueSpan">02 Мая 2015</span>
+           <span class="boldSpan">Открытие летней площадки!</span>
+      <p>Как только установиться теплая погода, занятия студии начнут проводиться на свежем воздухе на закрытой площадке. Фото площадки можно посмотреть здесь <a href="http://studioula.by/gallery4.htm"><img class="footerImg" src="images/arrow.jpg"></a>
+      <p><br />
+
+    <span class="blueSpan">01 Мая 2015</span>
+           <span class="boldSpan">Подготовка к школе в Гомеле.</span>
+      <p>Как говориться, готовь сани зимой, а в школу готовься летом. С первых дней лета в студии «Юла» начнут работать группы «Подготовка к школе» для малышей 5-7 лет. Уже ведется предварительная запись. Подробнее по телефону +375 29 333 44 64
+      <p><br />
+
+	<span class="blueSpan">01 Апреля 2015</span>
+            <span class="boldSpan">Фотографии "Музыка для мамы"</span>
+		<p>А вот и фотоотчет с очередного веселого, шумного и весьма увлекательного концерта "Музыка для мамы", который прошел в уютном зале студии "Юла" по ул. Ильича, 55. Спасибо за атмосферу нашей любимой группе "Рио".<a href="https://drive.google.com/folderview?id=0B1KYeBTv5qU3RnpfaHdyUzFxWjQ&usp=sharing"><img class="footerImg" src="images/arrow.jpg"></a>
+		 <p><br />
+
+ <span class="blueSpan">23 Февраля 2015</span>
+            <span class="boldSpan">"Музыка для мамы"</span>
+		<p>В Гомеле стартовал проект "Музыка для мамы", чтобы мамы вместе с маленькими детьми могли прийти и послушать хорошую живую музыку. В рамках проекта, в студии "Юла" выступили группа «Рио» и Джемма Брайт. Видеоотчет с мероприятия в нашей галерее.
+		 <p><br />
+
+
+<!--		 <span class="blueSpan">11 Января 2015</span>
+            <span class="boldSpan">Акробатика в Гомеле!</span>
+		<p>В нашей студии новые направления - акробатика и спортивная гимнастика для детей от 3,5 лет. Идет предварительное формирование групп. Информация по телефону +375 29 333 44 64
+		 <p><br />
+
+ <span class="blueSpan">05 Января 2015</span>
+            <span class="boldSpan">Фотографии с новогодних утренников! Обновлено!</span>
+		<p>Фотографии с новогодних утренников, состоявшихся 27 декабря с 10 до 16 часов включительно можно найти по ссылке <a href="https://drive.google.com/folderview?id=0B1KYeBTv5qU3b2hhQnJPSkRHWkk&usp=sharing"><img class="footerImg" src="images/arrow.jpg"></a></span>.<p><br />
+
+ <span class="blueSpan">02 Декабря 2014</span>
+            <span class="boldSpan">Port de bras (Пор де бра) в Гомеле!</span>
+		<p>Скоро в "Фитнес-студии "Юла" появится новое танцевальное направление для взрослых. Следите за новостями.
+		 <p><br />
+
+ <span class="blueSpan">02 Декабря 2014</span>
+            <span class="boldSpan">Начались занятия по йоге и фитнесу на Ильича, 55а.</span>
+		<p>
+		 <p><br />
+
+ <span class="blueSpan">16 Ноября 2014</span>
+            <span class="boldSpan">Детские утренники в Гомеле!</span>
+		<p>Новый год не за горами. Уже идет запись на новогодние утренники для малышей(1-3 года). Подробная информация по телефону: +375 29 333 44 64
+		 <p><br />
+
+
+
+
+
+ span class="blueSpan">28 Сентября 2014</span>
+            <span class="boldSpan">Аквааэробика в Гомеле.</span>
+		<p>С 3 октября начинаются занятия по аквааэробике. Предварительная запись обязательна!
+		 <p><br /-->
+<!--
+ <span class="blueSpan">21 Сентября 2014</span>
+            <span class="boldSpan">День города с фитнес-студией Юла!</span>
+		<p>20 сентября в день города студия "Юла" поздравила его маленьких жителей. Подробный фотоотчет в официальной группе Вконтакте<a href="https://vk.com/studioula?z=album-37903889_203233226"><img class="footerImg" src="images/vk.png" ></a></span>
+		 <p><br />
+
+ <span class="blueSpan">19 Сентября 2014</span>
+            <span class="boldSpan">Йога для беременных в Гомеле.</span>
+		<p>В студии «Юла» начались занятия по йоге для беременных. Занятия проводятся по адресу проспект Октября, 70 по вторникам и пятницам в 18.00. Растите с нами!
+		 <p><br />
+
+ <span class="blueSpan">07 Августа 2014</span>
+            <span class="boldSpan">Новинка в студии! Комплексные занятия для детей в Гомеле.</span>
+		<p> Занятия "Комплексное развитие" -2,5 часа без мамы и папы с пользой для Вашего ребенка! Подробнее здесь
+<a href="http://studioula.by/children.htm"><img class="footerImg" src="images/arrow.jpg"></a></span>
+		 <p><br />
+		 -->
+
+
+
+		 <br />  <a class="zagolovok" href="news.htm">Все новости</a><br />
+<!--           <br /> <a class="blueSpan linkSpan" href="news.htm">Все новости</a><br />   -->
+
+	    </div>
+    </div>
+
+    <div id="right">
+<!--
+        <div id="today">
+            <span class="zagolovok"> Занятия на сегодня</span> <br /><br /><br />
+            <span class="boldSpan"> пр. Октября, 70</span><br /><br />
+            10:00 - Подвижные игры и танцы <span class="smallSpan">(дети)</span><br />
+            17:45 - Хореография <span class="smallSpan">(дети)</span><br />
+            18:20 - Хореография <span class="smallSpan">(дети)</span><br />
+            19:00 - Фитнес <br /><br />
+            <span class="boldSpan"> ул. Ильича, 55а</span><br /><br />
+            17:15 - Подвижные игры и танцы <span class="smallSpan">(дети)</span><br />
+            18:05 - Подвижные игры и танцы <span class="smallSpan">(дети)</span><br />
+            19:00 - Подвижные игры и танцы <span class="smallSpan">(дети)</span><br />
+            20:00 - Восточные танцы <br /><br /><br />
+            <a class="blueSpan linkSpan" href="schedule.htm">Все расписание</a><br />
+        </div>
+  -->
+
+        <div id="question">
+
+			<a class="dogovorAdult" href="adult_rules.htm"> Правила посещения взрослого клуба</a> <br /><br />
+			<a class="dogovorChildren" href="children_rules.htm"> Правила посещения детского клуба</a> <br /><br /><br />
+
+            <span class="zagolovok"> Задайте вопрос</span> <br /><br /><br />
+            <form id="qForm" action="form1.php" method="post" name="form1" accept-charset="windows-1251">
+                <label class="qLabel">Ваше имя</label>
+                <input id="qName" type="text" value="" placeholder="" name="qName" required=""/>
+                <label class="qLabel">Ваш телефон</label>
+                <input id="qPhone" type="text" value="" placeholder="" name="qPhone" required=""/>
+                <label class="qLabel">Ваш E-mail</label>
+                <input id="qEmail" type="text" value="" placeholder="" name="qEmail" required=""/>
+                <label class="qLabel">Ваш Вопрос</label>
+                <textarea id="qVopros" placeholder="" name="qVopros" required=""></textarea>
+                <div class="g-recaptcha" data-sitekey="6LfEcDQUAAAAAERK6-mCc2C4lCyicVBYfNcoObwa"></div>
+                <input id="qSubmit" type="image" src="images/button.png" value="ОТПРАВИТЬ" name="qSubmit"/>
+            </form>
+        </div>
+
+
+    </div>
+
+</div>
+<div id="footer">
+    <div id="footer1">© 2013 Фитнес-студия "Юла"</div>
+    <div id="footer2">
+        <a href="http://vk.com/studioula"><img class="footerImg" src="images/vk.png" alt=""/></a>
+<!--        <img class="footerImg" src="images/facebook.png" alt=""/>		-->
+        <a href="http://ok.ru/studioula"><img class="footerImg" src="images/ok.png" alt=""/></a>
+    </div>
+    <div id="footer3">
+        <ul id="footerMenu">
+            <li><a href="index.htm" class="glav">Главная</a></li>
+            <li><a href="service.htm" class="uslu">Услуги</a></li>
+            <li><a href="schedule.htm" class="rasp">Расписание</a></li>
+            <li><a href="price.htm" class="ceny">Цены</a></li>
+            <li><a href="gallery.htm" class="foto">Галерея</a></li>
+            <li><a href="faq.htm" class="voot">Вопрос-ответ</a></li>
+            <li><a href="contact.htm" class="cont">Контакты</a></li>
+			<li><a href="blog/index.html" class="conta">БЛОГ</a></li>
+        </ul>
+    </div>
+</div>
+
+</div>
+</div>
+
+<div id="dno"> </div>
+
+
+
+<!--  Всплывающее  окно - начало -->
+<!--
+<style>
+#popup {
+  display: table;
+  position: fixed; top: 0; left: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background: rgba(240,240,240,.9);
+  visibility: hidden;
+  -webkit-animation: animaciya 1s 3s forwards; /* 3s - это количество секунд по истечении которых появляется сообщение */
+  animation: animaciya 1s 3s forwards; /* 3s - это количество секунд по истечении которых появляется сообщение */
+  cursor: pointer;
+}
+@-webkit-keyframes animaciya {
+  from {visibility: hidden;}
+  to {visibility: visible;}
+}
+@keyframes animaciya {
+  from {visibility: hidden;}
+  to {visibility: visible;}
+}
+#popup figure {
+  display: table-cell;
+  vertical-align: middle;
+}
+#popup div, #popup figcaption, #popup figure:before {
+  max-width: 800px; /* максимальная ширина  500 default*/
+  margin: 0 auto;
+  border-style: solid;
+  border-color: rgb(88,125,164);
+  background: #fff;
+}
+#popup figure:before { /* стиль кнопки "закрыть" */
+  content: "закрыть";
+  display: block;
+  padding: 0 1%;
+  border-width: 4px 4px 0 4px;
+  border-radius: 5px 5px 0 0;
+  text-align: right;
+  color: rgb(88,125,164);
+}
+#popup div, #popup figcaption {
+  padding: 1%;
+  cursor: default;
+}
+#popup figcaption {
+  position: relative;
+  border-width: 0 4px 0 4px;
+  font-size: 150%;
+  text-transform: uppercase;
+  color: rgb(100,100,100);
+}
+#popup figcaption:before { /* стиль восклицательного знака, не поддерживается Google Chrome. Его можно заменить на что-то более приемлемое */
+  content: "\26a0 \20 \20";
+  color: blue;
+  font-size: 150%;
+  vertical-align: middle;
+}
+#popup div {
+  border-width: 0 4px 4px 4px;
+  border-radius: 0 0 5px 5px;
+}
+</style>
+
+<div id="popup">
+  <figure>
+    <figcaption>Англоязычный летний лагерь для школьников!</figcaption>
+    <div>
+<p>
+        Организовать импровизированное путешествие в Англию во время школьных каникул реально!
+</p>
+<p>
+        Подвижные и развивающие игры, музыка, живое общение помогут детям хорошо провести время. Непринуждённая обстановка - лучшее условие для развития речи!
+</p>
+
+<p>
+        Кружевная тень на газоне нашей летней площадки создаст комфортные условия для отдыха и занятий. В лагерь принимаются школьники от 6 до 12 лет.
+</p>
+
+<p>
+        Смена длится неделю - 20 академических часов. Ежедневные три часа игр и веселья завершатся итоговым праздником с награждением и сладким столом.
+</p>
+<p>
+        Предварительная запись в англоязычный лагерь дневного пребывания по телефону +375 29 333 44 64. <br>
+</p>
+
+
+<img src = "images/english_camp.jpg" align="middle">
+vertical
+</div>
+
+  </figure>
+</div>
+
+<script>fixed
+window.onkeyup = okno; // нажатие Esc, см. условие "e.keyCode==27"
+document.getElementById('popup').onclick = okno;
+
+function okno(e) {
+  if (e.target.nodeName != 'DIV' && e.target.nodeName != 'FIGCAPTION' || e.keyCode==27) { // через && перечисляются теги, клинкув на которые окно не будет закрыто; сюда же можно включить тег A или IFRAME
+    document.getElementById('popup').style.display='none';
+    localStorage.setItem('popup1', 'none');
+  }
+}
+
+// метод отключения окна после записи в куки
+
+if(localStorage.getItem('popup1')) {fixed
+  document.getElementById('popup').style.display='none';
+}
+
+</script>
+
+-->
+<!-- Всплывающее  окно - Летний Лагерь окончание-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  Всплывающее  окно  -->
+
+<!--
+
+<style>
+#popup {
+  display: table;
+  position: fixed; top: 0; left: 35%;
+  z-index: 100;
+  height: 100%;Дед Мороз
+  width: 100%;
+  background: rgba(240,240,240,.9);
+  visibility: hidden;
+  -webkit-animation: animaciya 1s 3s forwards; /* 3s - это количество секунд по истечении которых появляется сообщение */
+  animation: animaciya 1s 3s forwards; /* 3s - это количество секунд по истечении которых появляется сообщение */
+  cursor: pointer;
+}
+@-webkit-keyframes animaciya {
+  from {visibility: hidden;}
+  to {visibility: visible;}
+}
+@keyframes animaciya {
+  from {visibility: hidden;}
+  to {visibility: visible;}
+}
+#popup figure {
+  display: table-cell;
+  vertical-align: middle;
+}
+#popup div, #popup figcaption, #popup figure:before {
+  max-width: 500px; /* максимальная ширина */
+  margin: 0 auto;
+  border-style: solid;
+  border-color: rgb(88,125,164);
+  background: #fff;
+}
+#popup figure:before { /* стиль кнопки "закрыть" */
+  content: "закрыть";
+  display: block;
+  padding: 0 1%;
+  border-width: 4px 4px 0 4px;
+  border-radius: 5px 5px 0 0;
+  text-align: right;
+  color: rgb(88,125,164);
+}
+#popup div, #popup figcaption {
+  padding: 1%;
+  cursor: default;
+}
+#popup figcaption {
+  position: relative;
+  border-width: 0 4px 0 4px;
+  font-size: 150%;
+  text-transform: uppercase;
+  color: rgb(100,100,100);
+}
+#popup figcaption:before { /* стиль восклицательного знака, не поддерживается Google Chrome. Его можно заменить на что-то более приемлемое */
+  content: "\26a0 \20 \20";
+  color: blue;
+  font-size: 150%;
+  vertical-align: middle;
+}
+#popup div {
+  border-width: 0 4px 4px 4px;
+  border-radius: 0 0 5px 5px;
+}
+</style>
+
+<div id="popup">
+  <figure>
+  <figcaption>Студия "Юла" прекращает свою работу</figcaption>
+      <div>Как не грустно это признавать, Фитнес студия Юла прекращает свою работу.<br/>
+  		Спасибо всем кто все эти годы был с нами, <br/>
+      участвовал в наших больших и маленьких праздниках!<br/>
+  		Спасибо всем кто вместе с нами делал этот мир лучше!<br/>
+  		Мы не прощаемся, мы говорим до свидания.<br/>
+      Нам нужен перерыв.<br/>
+      Мы хотим переосмыслить свою миссию и подумать как расти дальше.<br/>
+      С любовью, Коллектив студии.<br/>
+
+
+<img src = "images/weRclosed.jpg" align="middle">
+
+</div>
+
+  </figure>
+</div>
+
+<script>
+window.onkeyup = okno; // нажатие Esc, см. условие "e.keyCode==27"
+document.getElementById('popup').onclick = okno;
+
+
+
+function okno(e) {
+  if (e.target.nodeName != 'DIV' && e.target.nodeName != 'FIGCAPTION' || e.keyCode==27) { // через && перечисляются теги, клинкув на которые окно не будет закрыто; сюда же можно включить тег A или IFRAME
+    document.getElementById('popup').style.display='none';
+    localStorage.setItem('popup1', 'none');
+  }
+}
+// метод отключения окна после записи в куки
+if(localStorage.getItem('popup1')) {
+  //document.getElementById('popup').style.display='none';
+}
+
+</script>
+
+
+-->
+
+
+<!-- Всплывающее окно окончание-->
+
+
+
+
+
+
+
+<!--  Google Analitics  -->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55364617-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!--  Google Analitics  -->
+
+
+
+<!-- HotLog -->
+<span id="hotlog_counter"></span>
+<span id="hotlog_dyn"></span>
+<script type="text/javascript"> var hot_s = document.createElement('script');
+hot_s.type = 'text/javascript'; hot_s.async = true;
+hot_s.src = 'http://js.hotlog.ru/dcounter/2346759.js';
+hot_d = document.getElementById('hotlog_dyn');
+hot_d.appendChild(hot_s);
+</script>
+<noscript>
+<a href="http://click.hotlog.ru/?2346759" target="_blank">
+<img src="http://hit37.hotlog.ru/cgi-bin/hotlog/count?s=2346759&im=68" border="0"
+title="HotLog" alt="HotLog"></a>
+</noscript>
+<!-- /HotLog -->
+
+
+
+<!-- /Yandex -->
+<a href="http://yandex.ru/cy?base=0&amp;host=studioula.by"><img src="http://www.yandex.ru/cycounter?studioula.by" width="88" height="31" alt="Яндекс цитирования" border="0" /></a>
+<!-- /Yandex -->
+
+<!-- Google -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-52376679-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!--	 Google -->
+
+</body>
+</html>
