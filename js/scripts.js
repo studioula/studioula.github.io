@@ -35,6 +35,40 @@
         $(".navbar-collapse").collapse("hide");
     });
 
+    $('#submitCodeForm').on('submit', function() {
+        var code = document.getElementById("inputCode").value
+        if (code.toUpperCase() === "MTVKOELN") {
+                var win = window.open("https://t.me/joinchat/H0NhdnCAyPWmWcY6", '_blank');
+                  win.focus();
+                return false;
+        }
+        document.getElementById("inputCode").value = ""
+        document.getElementById("inputCode").placeholder = "Bitte gültigen Code eingeben ..."
+        return false;
+    });
+
+    $('#submitCodeForm1').on('submit', function() {
+        var code = document.getElementById("inputCode1").value
+        if (code.toUpperCase() === "MTVKOELN") {
+                window.location.href = "program1.html";
+                return false;
+        }
+        document.getElementById("inputCode1").value = ""
+        document.getElementById("inputCode1").placeholder = "Bitte gültigen Code eingeben ..."
+        return false;
+    });
+
+    $('#submitCodeForm2').on('submit', function() {
+        var code = document.getElementById("inputCode2").value
+        if (code.toUpperCase() === "MTVKOELN") {
+                window.location.href = "program2.html";
+                return false;
+        }
+        document.getElementById("inputCode2").value = ""
+        document.getElementById("inputCode2").placeholder = "Bitte gültigen Code eingeben ..."
+        return false;
+    });
+
     // Activate scrollspy to add active class to navbar items on scroll
     $("body").scrollspy({
         target: "#mainNav",
