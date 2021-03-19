@@ -60,7 +60,7 @@
 
     $('#submitCodeForm2').on('submit', function() {
         var code = document.getElementById("inputCode2").value
-        if (code.toUpperCase() === "MTVKOELN") {
+        if (code.toUpperCase() === "MTVKOELN_APRIL") {
                 window.location.href = "program2.html";
                 return false;
         }
