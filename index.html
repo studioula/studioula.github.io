@@ -1,577 +1,148 @@
 <!DOCTYPE html>
-<html lang="en">
-<head> 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HENWF0XH1P"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HENWF0XH1P');
-    </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>ULAMOVE</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ulamove • Gesundheit & Fitness</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="../images/ulamove_logo.png">
 </head>
-<body id="page-top">
+<body>
+<div class="container">
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+    </div>
 
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"> </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Kurse und Leistungen</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#prices">Preise</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Über mich</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contacts">Kontakt</a></li>
-                <div class="dropdown show">
-                                                <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <img src="assets/img/icon128px-gradient-fpng.png">
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="index.html">Deutsch</a>
-                                                    <a class="dropdown-item" href="index_ru.html">Русский</a>
-                                                </div>
+    <header>
+        <h1 data-i18n="title"></h1>
+        <p class="tagline" data-i18n="tagline"></p>
+        <p class="location-tagline" data-i18n="location"></p>
+    </header>
+
+    <div class="content-switcher">
+        <div class="switch-buttons">
+            <button class="switch-btn active" id="physio-btn" data-i18n="physio-btn"/>
+            <button class="switch-btn" id="training-btn" data-i18n="training-btn"/>
+        </div>
+
+        <div class="content-area">
+            <div class="content-panel active" id="physio-content">
+                <div class="text-content">
+                    <h2 data-i18n="physio-title"></h2>
+                    <p data-i18n="physio-desc-short"></p>
+                    <p class="notice" data-i18n="physio-private"></p>
+                    <a href="https://cal.com/ulamove/privattermin-physiotherapie" target="_blank" class="learn-more" data-i18n="physio-cta"></a>
                 </div>
+                <div class="image-container">
+                    <img src="images/ulamove-physio.jpg" alt="Physiotherapie">
+                </div>
+            </div>
+
+            <div class="content-panel" id="training-content">
+                <div class="text-content">
+                    <h2 data-i18n="training-title"></h2>
+                    <p data-i18n="training-desc"></p>
+                    <a href="training" target="_blank" class="learn-more" data-i18n="training-cta"></a>
+                    <a href="https://cal.com/ulamove" target="_blank" class="learn-more" data-i18n="training-schedule"></a>
+                </div>
+                <div class="image-container">
+                    <img src="images/ulamove-training.jpg" alt="Training">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Rechtliches</h3>
+            <ul>
+                <li><a href="impressum">Impressum</a></li>
+                <li><a href="datenshutz">Datenschutz</a></li>
             </ul>
         </div>
-    </div>
-</nav>
-<!-- Masthead-->
-<header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-
-        <div class="container">
-<!--            <div class="row">-->
-<!--                <div class="col-lg-8 mx-auto">-->
-<!--                    <div class="embed-responsive embed-responsive-16by9">-->
-<!--                        <iframe src="https://www.youtube.com/embed/PxO6JZXhfiU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-            <div class="mx-auto text-center">
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">In Form sein ist einfach</h2> <br> <br>Fitness,Yoga/Therapie, Kinder-/Familientraining, personal Training in Köln Mülheim, Neustadt/Süd, Braunfels <br> <br>
-                <a class="btn btn-primary js-scroll-trigger" href="#projects">LOS</a>
+        <div class="footer-section">
+            <h3>Kontakt</h3>
+            <div class="contact-info">
+                <p class="contact-item">
+                    <a href="tel:+4917669353076">
+                        <span class="contact-icon">📞</span>
+                        0176 / 693 530 76
+                    </a>
+                </p>
+                <p class="contact-item">
+                    <a href="mailto:contact@ulamove.de">
+                        <span class="contact-icon">✉️</span>
+                        contact@ulamove.de
+                    </a>
+                </p>
             </div>
         </div>
-    </div>
-</header>
-
-<!-- Projects-->
-<section class="projects-section bg-light" id="projects">
-    <div class="container">
-        <!-- Featured Project Row-->
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/program_kids.jpg" alt="" /></div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="featured-text text-center text-lg-left">
-                    <h3>Kinder</h3>
-                    <div id="accordionOne">
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Kinder im Alter von 1-3 Jahren (mit Eltern)
-                                    </button>
-                                </h5>
-                            </div>
-
-                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Spielaktivitäten in kleinen Gruppen mit einer Vielzahl von Aktivitäten, um die Kinder nicht nur
-                                    körperlich, sondern auch sozial und geistig zu fördern. Wir spielen, singen, tanzen, malen, basteln,
-                                    bewegen uns auf vielfältige Weise und lernen, im Alltag beweglich zu sein. Diese Aktivitäten sind nicht
-                                    nur hervorragend für die Entwicklung der Kinder, sondern auch für die Eltern, die gemeinsam mit ihrem
-                                    Kind lernen und sich gegenseitig neu kennenlernen.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Kinder im Alter von 3-5 Jahren
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Spielende Lernaktivitäten für kleine Zappelphilippe, die sich auf ihre Vorstellungskraft verlassen, und
-                                    den Verlauf der Aktivitäten verändern können. Diese werden die Kinder in Begeisterung versetzen und
-                                    die Liebe zur Bewegung durch ihre verschiedenen Formen - Bewegungsspiele, Tanz, Gymnastik, Yoga,
-                                    Leichtathletik - wecken.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Kinder im Alter von 6-10 Jahren
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Die Vorstellungskraft spielt im Lernprozess dieser Kinder nach wie vor eine wichtige Rolle, und so lernen
-                                    die Kinder durch nicht-triviale Unterrichtsstunden, ein Team zu sein, und werden zu starken,
-                                    beweglichen, flexiblen und selbstbewussten Kindern. All dies lernen sie durch Fitness, Yoga, Tanz,
-                                    Akrobatik, Leichtathletik und spielerischen Mannschaftssport.
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Kinder im Alter von 10-12 Jahren
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Hier kann Sport ein wichtiger Start ins Leben sein, eine Basis für Selbstvertrauen und körperliche
-                                    Gesundheit, auf die heranwachsende Kinder zunehmend achten sollen. Die Kinder haben auch die
-                                    Möglichkeit, sich durch eine Vielzahl von körperlichen Aktivitäten - Leichtathletik, Fitness, Yoga, Tanz,
-                                    Akrobatik und Gymnastik - zu verausgaben.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingFive">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Einzeltraining
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Wir arbeiten gemeinsam an den individuellen Zielen Ihrer Kinder, sei es im Bereich der
-                                    Gewichtskontrolle, der Motivation, der Genesung von Verletzungen, spezieller Kinder usw.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingSix">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                        Online-Training für Kinder
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionOne">
-                                <div class="card-body">
-                                    Dieses Training wurde dank Lockdown ins Leben gerufen und kann bei Bedarf regelmäßig durchgeführt
-                                    werden.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-                <div class="col-xl-4 col-lg-5">
-                    <div class="featured-text-right text-center text-lg-right">
-                        <h3>Erwachsene</h3>
-                        <div id="accordionTwo">
-                            <div class="card">
-                                <div class="card-header" id="heading7">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
-                                            Fitness
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionTwo">
-                                    <div class="card-body">
-                                        Eine großartige Gelegenheit, in der Gesellschaft von Gleichgesinnten glücklicher, gesünder und schöner
-                                        zu werden, indem man verschiedene Arten von Fitnessübungen mit zusätzlichen Geräten oder nur mit
-                                        seinem Körper treibt.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading8">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
-                                            Yoga
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionTwo">
-                                    <div class="card-body">
-                                        Training nach dem Vorbild des Hatha-Yoga - sanft, dynamisch, dehnend, entspannend, Atem- und
-                                        Achtsamkeitsarbeit.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading9">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
-                                            Einzeltraining
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionTwo">
-                                    <div class="card-body">
-                                        Wir arbeiten gemeinsam an Ihren individuellen Zielen, sei es Gewichtsarbeit, Motivation, Körperhaltung,
-                                        Genesung nach einem Trauma, usw.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header" id="heading10">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
-                                            Yoga für Schwangere
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionTwo">
-                                    <div class="card-body">
-                                        Sanfte Körperarbeit zu einem so wichtigen Zeitpunkt im Leben, um Dir und deinem Baby das
-                                        Zusammenwachsen zu erleichtern und den Geburtsvorgang und die Erholung danach zu vereinfachen.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="heading11">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
-                                            Familientraining
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionTwo">
-                                    <div class="card-body">
-                                        Geeignet für Familien (ab 2 Personen) - mit viel Erfahrung mit allen Altersgruppen führe ich
-                                        Familienkurse für Familien mit Kindern und auch für Paare ohne Kinder durch.
-                                    </div>
-                                </div>
-                            </div>
-<!--                            <div class="card">-->
-<!--                                <div class="card-header" id="heading12">-->
-<!--                                    <h5 class="mb-0">-->
-<!--                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">-->
-<!--                                            On-line Challenge-Sessions-->
-<!--                                        </button>-->
-<!--                                    </h5>-->
-<!--                                </div>-->
-<!--                                <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionTwo">-->
-<!--                                    <div class="card-body">-->
-<!--                                        21-tägige-Programme mit 15/20 Minuten regelmäßigem Sport pro Tag, die es Dir ermöglichen, Deinen-->
-<!--                                        Körper Schritt für Schritt zu verbessern und dabei ein Minimum an Zeit zu investieren. Bislang gibt es-->
-<!--                                        sieben Programme. Sie alle haben einen unterschiedlichen Schwerpunkt und unterschiedliche Intensität.-->
-<!--                                        Lies mehr auf patreon-->
-<!--                                        <a href="https://www.patreon.com/bePatron?u=46217503" target="_blank" rel="noopener" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="card">-->
-<!--                                <div class="card-header" id="heading13">-->
-<!--                                    <h5 class="mb-0">-->
-<!--                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse13" aria-expanded="false" aria-controls="collapse13">-->
-<!--                                            Wöchentlicher Workout-Stream auf YouTube-->
-<!--                                        </button>-->
-<!--                                    </h5>-->
-<!--                                </div>-->
-<!--                                <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#accordionTwo">-->
-<!--                                    <div class="card-body">-->
-<!--                                        Zweimal wöchentlich einstündige Trainingseinheiten bequem von zu Hause aus. Beim Streaming können-->
-<!--                                        wir miteinander kommunizieren und konsequentes Achtsamkeitstraining treiben, um unser Leben durch-->
-<!--                                        einen harmonischern/leistungsfähigen/gemütlichen/angenehmen, gesunden Körper, den Du und ich Tag-->
-<!--                                        für Tag schaffen, angenehmer/behaglicher/glücklicher/erfreulicher/harmonischer zu gestalten. Link-->
-<!--                                        youtube/patreon für weitere Informationen-->
-<!--                                        <a href="https://www.patreon.com/bePatron?u=46217503" target="_blank" rel="noopener" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/program_3.jpg" alt="" /></div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- Prices -->
-<section class="projects-section bg-light" id="prices">
-    <div class="container">
-        <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/program_2.jpg" alt="" /></div>
-            <div class="col-xl-4 col-lg-5">
-                <div class="featured-text text-center text-lg-left">
-                    <h3>Preise</h3>
-                    <p class="text-black-50 mb-0">
-                        (Die Preise sind Orientierungspreise, weitere Informationen dazu erhältst du von mir).<br><br>
-                    </p>
-                    <p class="text-black-50 mb-0">
-                        Einzeltraining:<br> 60-90 Euro pro Stunde.<br><br>
-                        Mikrogruppe (2-3 Personen):<br> 25 Euro pro Stunde - mindestens 4 Unterrichtsstunden.<br><br>
-                        Minigruppe (4-7 Personen):<br> 20 Euro pro Stunde - mindestens 4 Unterrichtsstunden.<br><br>
-                    </p>
-                </div>
+        <div class="footer-section">
+            <h3>Lokationen</h3>
+            <div class="location-info">
+                <p class="contact-item">
+                    <a href="https://maps.app.goo.gl/2daWNkzjEgX2xDch9" target="_blank">
+                        <span class="contact-icon">📍</span>
+                        Aachener Str. 340/346b, 50933 Köln, Deutschland
+                    </a>
+                </p>
+                <p class="contact-item">
+                    <a href="https://goo.gl/maps/bJMBpxYaZGF3QJdj6" target="_blank">
+                        <span class="contact-icon">📍</span>
+                        Düsseldorfer Straße 74, 51063 Köln-Mülheim
+                    </a>
+                </p>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- About-->
-<section class="about-section text-center" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="text-white mb-4">Über mich</h2>
-               <p class="text-white-50 about-text" style="text-align: left;">
-    Hallo und herzlich willkommen!<br>
-    Ich bin Yuliya Varabyova – deine Expertin für Fitness, Gesundheit und ganzheitliches Wohlbefinden. 
-    Als persönliche Trainerin, Physiotherapeutin und Yoga-Therapeutin helfe ich dir, deine Ziele zu erreichen: 
-    ob du fitter, stärker oder einfach zufriedener in deinem Körper sein möchtest.<br><br>
-
-    Meine Leidenschaft ist es, Menschen dabei zu unterstützen, dein volles Potenzial zu entfalten – körperlich wie mental.<br>
-    Mit individuell angepassten Trainingsprogrammen und gezielter Körperarbeit biete ich dir die Werkzeuge, die du brauchst, 
-    um dich energiegeladen, gesund und glücklich zu fühlen.<br><br>
-
-    <strong>Was ich dir biete:</strong><br>
-    - Effektive Fitnessprogramme, die auf deine Bedürfnisse abgestimmt sind.<br>
-    - Physiotherapeutische Begleitung für ein schmerzfreies Leben.<br>
-    - Praktische Tipps für einen aktiven und gesunden Lebensstil.<br>
-    - Unterstützung auf deinem Weg zu einem positiven Körpergefühl und mehr Selbstbewusstsein.<br><br>
-
-    Schau dir meine aktuellen Kurse und Dienstleistungen an und finde heraus, wie du mit meiner Unterstützung 
-    deine Ziele schneller und nachhaltiger erreichen kannst. Lass uns gemeinsam deinen Weg zu einem gesunden, 
-    starken und glücklichen Leben starten!<br><br>
-
-    <strong>Starte noch heute – dein neuer Körper wartet auf dich!</strong>
-</p>
-                <div class="container"> <!-- image gallery -->
-                    <div id="carouselExample" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="assets/img/fit1.jpg" class="d-block w-100" alt="Image 1">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit2.jpg" class="d-block w-100" alt="Image 2">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit3.jpg" class="d-block w-100" alt="Image 3">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="assets/img/fit4.jpg" class="d-block w-100" alt="Image 4">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit5.jpg" class="d-block w-100" alt="Image 5">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit6.jpg" class="d-block w-100" alt="Image 6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="assets/img/fit7.jpg" class="d-block w-100" alt="Image 7">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit8.jpg" class="d-block w-100" alt="Image 8">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit9.jpg" class="d-block w-100" alt="Image 9">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <img src="assets/img/fit10.jpg" class="d-block w-100" alt="Image 10">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit11.jpg" class="d-block w-100" alt="Image 11">
-                                    </div>
-                                    <div class="col-4">
-                                        <img src="assets/img/fit12.jpg" class="d-block w-100" alt="Image 12">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Add more carousel items for additional images -->
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                <div class="footer-section social-section">
+                    <h3>Folgen Sie mir</h3>
+                    <div class="social-icons">
+                        <a href="https://www.youtube.com/channel/UCIU9Seu8jZDRogf6vOAB3XA" target="_blank" class="social-icon youtube" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
                         </a>
-                        <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+                        <a href="https://www.instagram.com/ula_move" target="_blank" class="social-icon instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <defs>
+                                    <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f09433;stop-opacity:1" />
+                                        <stop offset="25%" style="stop-color:#e6683c;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#dc2743;stop-opacity:1" />
+                                        <stop offset="75%" style="stop-color:#cc2366;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#bc1888;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
                         </a>
+                        <a href="https://www.patreon.com/ulamove" target="_blank" class="social-icon patreon" aria-label="Patreon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/>
+                            </svg>
+                        </a>
+                        <a href="https://t.me/joinchat/H0NhdnCAyPWmWcY6" target="_blank" class="social-icon telegram" aria-label="Telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </a>
+<!--                        <a href="#" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp">-->
+<!--                            <svg viewBox="0 0 24 24" fill="currentColor">-->
+<!--                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>-->
+<!--                            </svg>-->
+<!--                        </a>-->
                     </div>
                 </div>
-                <br><br><br>
-                <h2 class="text-white mb-4">Qualifikation/<br>Berufserfahrung</h2>
-                <p class="text-white-50 about-text" style="text-align: left;">
-    <strong>Qualifikation und Berufserfahrung</strong><br><br>
-
-    Mit über 15 Jahren Erfahrung im Bereich Fitness, Gesundheit und Bewegung biete ich dir ein ganzheitliches Training, das auf deine individuellen Bedürfnisse abgestimmt ist.<br><br>
-
-    <strong>Mein Hintergrund umfasst:</strong><br>
-    - <strong>Leistungssport, Tanz und Yoga:</strong> Die Basis für Kreativität und Disziplin in meinen Trainingsmethoden.<br>
-    - <strong>Studium an der Universität als Sportlehrerin:</strong> Mit Schwerpunkt auf Körpererziehung für Kinder im Vorschulalter. Diese Ausbildung hat mir ein tiefes Verständnis für die Bedürfnisse von Menschen in verschiedenen Altersgruppen vermittelt..<br>               
-    - <strong>Ausbildung zur Physiotherapeutin:</strong> Für ein sicheres und effektives Training, auch bei besonderen gesundheitlichen Anforderungen.<br>
-    - <strong>Arbeit mit Kindern und Erwachsenen:</strong> Ich habe Erfahrung im Umgang mit Menschen jeden Alters und begleite dich einfühlsam auf deinem Weg zu einem gesunden und aktiven Leben.<br><br>
-
-    Ich glaube daran, dass jeder Mensch einzigartig ist, und passe mein Training entsprechend an. Mein Ziel ist es, dich nicht nur fitter und gesünder zu machen, sondern auch deine Lebensqualität nachhaltig zu steigern.<br><br>
-</p>
-
-                <h4 class="text-white mb-4">Die Vorteile eines Trainings mit mir:</h4>
-                <p class="text-white-50 about-text" style="text-align: left;">
-    <br>
-    - **Training in der Natur**<br>
-    In den wärmeren Monaten trainieren wir ausschließlich im Freien – an wunderschönen Orten, die dich inspirieren und motivieren. 
-    Frische Luft und Natur machen das Training nicht nur effektiver, sondern auch zu einem Erlebnis!<br><br>
-
-    - **Individuelle Betreuung**<br>
-    Ich bin deine persönliche Ansprechpartnerin und höre dir aufmerksam zu. Gemeinsam finden wir gezielte Lösungen für deine individuellen 
-    Herausforderungen, damit du deine Ziele schneller und nachhaltiger erreichst.<br><br>
-
-    - **Exklusive kleine Gruppen (3–6 Personen)**<br>
-    Kein Massenbetrieb! Bei mir stehst du im Mittelpunkt. In kleinen Gruppen bekommst du die Aufmerksamkeit und Unterstützung, die du verdienst – 
-    denn für mich zählt Qualität mehr als Quantität.<br><br>
-
-    - **Kreatives und abwechslungsreiches Training**<br>
-    Langweilige Workouts? Nicht bei mir! Mein Training ist vielseitig, motivierend und wird stets an deine Bedürfnisse und die aktuelle Situation angepasst. 
-    So bleibt jede Einheit spannend und effektiv.<br><br>
-
-    - **Physiotherapeutisches Know-how**<br>
-    Als Physiotherapeutin bringe ich fundiertes Wissen in unsere Arbeit ein, um dich ganzheitlich zu unterstützen. 
-    Deine Gesundheit und dein Wohlbefinden liegen mir am Herzen – wir arbeiten als Team an deinem Fortschritt!<br><br>
-
-    Ich biete mein Training in Köln Mülheim, Neustadt/Süd, Braunfels und auch direkt bei Dir vor Ort an.<br><br>
-</p>
-            </div>
-        </div>
-        <img class="img-fluid" src="assets/img/ipad.png" alt="" />
     </div>
-</section>
-
-<!-- Contact-->
-<section class="contact-section bg-black" id="contacts">
-    <div class="container">
-        <a href="https://www.patreon.com/bePatron?u=46217503" target="_blank" rel="noopener" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+    <div class="footer-copyright">
+        <p>&copy; Yuliya Varabyova 2020</p>
     </div>
-</section>
+</footer>
 
-<section class="contact-section bg-black">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Kursort</h4>
-                        <hr class="my-4" />
-                        <div class="small text-black-50">
-                            <a href="https://goo.gl/maps/bJMBpxYaZGF3QJdj6" target="_blank" rel="noopener">Düsseldorfer Straße 74, 51063 Köln-Mülheim</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-envelope text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Email</h4>
-                        <hr class="my-4" />
-                        <div class="small text-black-50">
-                            <a href="mailto:contact@ulamove.de">contact@ulamove.de</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Telefonnummer</h4>
-                        <hr class="my-4" />
-                        <div class="small text-black-50">0176 / 693 530 76</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                <div class="card py-4 h-100">
-                    <div class="card-body text-center">
-                        <i class="fab fa-telegram text-primary mb-2"></i>
-                        <h4 class="text-uppercase m-0">Telegram</h4>
-                        <hr class="my-4" />
-                        <div class="small text-black-50">
-                            <a href="https://t.me/joinchat/H0NhdnCAyPWmWcY6">Telegram chat</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="social d-flex justify-content-center">
-            <a class="mx-2" href="https://t.me/joinchat/H0NhdnCAyPWmWcY6" target="_blank" rel="noopener"><i class="fab fa-telegram"></i></a>
-            <a class="mx-2" href="https://www.instagram.com/ula_move/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-            <a class="mx-2" href="https://www.youtube.com/channel/UCIU9Seu8jZDRogf6vOAB3XA" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-            <a class="mx-2" href="https://www.patreon.com/ulamove" target="_blank" rel="noopener"><i class="fab fa-patreon"></i></a>
-        </div>
-    </div>
-</section>
-<!-- Footer-->
-<footer class="footer bg-black small text-center text-white-50"><div class="container">Copyright © UlaMove, Inhaberin Yuliya Varabyova 2021</div></footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Third party plugin JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-
-<!-- GOOGLE -->
-<?php include_once("analyticstracking.php") ?>
-
-<!-- Google -->
-<script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-52376679-1', 'auto');
-        ga('send', 'pageview');
-
-        </script>
-<!--	 Google -->
-
+<script src="js/script.js"></script>
 </body>
 </html>
