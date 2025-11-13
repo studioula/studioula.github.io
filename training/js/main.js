@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const link = document.querySelector('.nav-link[href*="' + sectionId + '"]');
             if (!link) {
-                console.log('Link not found for section ' + sectionId);
+//                console.log('Link not found for section ' + sectionId);
                 return;
             }
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {

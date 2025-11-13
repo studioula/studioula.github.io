@@ -443,6 +443,10 @@ img {
 }
 
 /* ===== ABOUT SECTION ===== */
+#about {
+    background-color: white;
+}
+
 .about-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -477,10 +481,6 @@ img {
 }
 
 /* ===== GALLERY SECTION ===== */
-#gallery {
-    background-color: white;
-}
-
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
