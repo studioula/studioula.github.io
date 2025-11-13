@@ -42,36 +42,41 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionHeight = section.offsetHeight;
             const sectionTop = section.offsetTop - 100;
             const sectionId = section.getAttribute('id');
-            
+
+            const link = document.querySelector('.nav-link[href*="' + sectionId + '"]');
+            if (!link) {
+                console.log('Link not found for section ' + sectionId);
+                return;
+            }
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                document.querySelector('.nav-link[href*=' + sectionId + ']').classList.add('active');
+                link.classList.add('active');
             } else {
-                document.querySelector('.nav-link[href*=' + sectionId + ']').classList.remove('active');
+                link.classList.remove('active');
             }
         });
     }
     
     window.addEventListener('scroll', highlightNavLink);
     
-    // Form submission with validation
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Add subtle animation to button
-            const submitButton = this.querySelector('button[type="submit"]');
-            submitButton.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                submitButton.style.transform = 'scale(1)';
-            }, 200);
-            
-            setTimeout(() => {
-                alert('Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.');
-                contactForm.reset();
-            }, 300);
-        });
-    }
+    //    // Form submission with validation
+    //    const contactForm = document.getElementById('contactForm');
+    //    if (contactForm) {
+    //        contactForm.addEventListener('submit', function(e) {
+    //            e.preventDefault();
+    //
+    //            // Add subtle animation to button
+    //            const submitButton = this.querySelector('button[type="submit"]');
+    //            submitButton.style.transform = 'scale(0.98)';
+    //            setTimeout(() => {
+    //                submitButton.style.transform = 'scale(1)';
+    //            }, 200);
+    //
+    //            setTimeout(() => {
+    //                alert('Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.');
+    //                contactForm.reset();
+    //            }, 300);
+    //        });
+    //    }
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
