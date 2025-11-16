@@ -102,6 +102,7 @@ h1 {
 
 .learn-more {
     display: inline-block;
+    margin: 3px;
     padding: 12px 24px;
     background-color: #2d7fea;
     color: white;
