@@ -127,6 +127,10 @@ h1 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+.multiline {
+  white-space: pre-line;
+}
+
 @media (max-width: 768px) {
     .content-panel {
         flex-direction: column;
