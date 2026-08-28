@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ulamove • Gesundheit & Wohlbefinden</title>
+    <link rel="icon" type="image/png" href="../../images/ulamove_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Literata:opsz,wght@7..72,300..700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ulamove — Version 1
+   Direction: ink on paper. One accent. Craft in the motion.
+   Every transition names its properties. Nothing scales from 0.
+   ============================================================ */
+
+:root {
+    /* Surface */
+    --paper:      #F1EDE6;
+    --paper-warm: #E9E3D8;
+    --card:       #FBF9F5;
+    --ink:        #191512;
+    --ink-soft:   #4A423A;
+    --ink-muted:  #8A8175;
+    --rule:       rgba(25, 21, 18, 0.13);
+    --rule-soft:  rgba(25, 21, 18, 0.07);
+
+    /* One accent, drawn from the orange stroke of the logo */
+    --accent:      #B4441F;
+    --accent-tint: rgba(180, 68, 31, 0.08);
+
+    /* Motion. The built-in curves are too weak. */
+    --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-soft:   cubic-bezier(0.32, 0.72, 0, 1);
+
+    --shell: 1140px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+/* Paper tooth. Barely there, but the flat fill reads dead without it. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection { background: var(--accent); color: #FFF; }
+
+a { color: inherit; }
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+.shell {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 28px;
+}
+
+/* Small caps meta label. Used for every piece of orientation text. */
+.meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+/* ============================================================
+   Masthead
+   ============================================================ */
+
+.masthead {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--paper) 84%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid transparent;
+    transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.masthead[data-scrolled="true"] {
+    border-bottom-color: var(--rule);
+}
+
+.masthead-inner {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.wordmark {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.wordmark img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    transition: transform 320ms var(--ease-out);
+}
+
+.wordmark-text {
+    font-family: 'Literata', Georgia, serif;
+    font-variation-settings: 'opsz' 20;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .wordmark:hover img { transform: rotate(-7deg) scale(1.06); }
+}
+
+/* Language switcher — a segmented pill with a thumb that slides.
+   The thumb is a transform, never a layout change. */
+.lang {
+    position: relative;
+    display: flex;
+    padding: 3px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.lang-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: calc(100% - 6px);
+    border-radius: 999px;
+    background: var(--ink);
+    transition: transform 260ms var(--ease-out), width 260ms var(--ease-out);
+    will-change: transform;
+}
+
+.lang-btn {
+    position: relative;
+    z-index: 1;
+    appearance: none;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: var(--ink-muted);
+    transition: color 180ms ease, transform 140ms var(--ease-out);
+}
+
+.lang-btn.active { color: var(--paper); }
+.lang-btn:active { transform: scale(0.94); }
+
+@media (hover: hover) and (pointer: fine) {
+    .lang-btn:not(.active):hover { color: var(--ink); }
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+
+.hero {
+    padding: 96px 0 68px;
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 56px;
+    align-items: center;
+}
+
+.hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.hero-eyebrow::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--rule);
+    max-width: 180px;
+}
+
+h1 {
+    font-family: 'Literata', Georgia, serif;
+    font-variation-settings: 'opsz' 72;
+    font-size: clamp(46px, 8.2vw, 104px);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+}
+
+.hero-tagline {
+    margin-top: 26px;
+    font-size: clamp(19px, 2.1vw, 25px);
+    line-height: 1.38;
+    color: var(--ink-soft);
+    max-width: 22ch;
+    text-wrap: pretty;
+}
+
+/* The breath figure. Reflektorische Atemtherapie is the specialty,
+   so the one decorative element on the page is a breath:
+   4s in, 1s hold, 6s out. Seen once per visit, so it earns its motion. */
+.breath {
+    position: relative;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+}
+
+.breath-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    animation: breathe 11s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+.breath-ring:nth-child(2) { inset: 14%; animation-delay: 0.28s; border-color: rgba(180, 68, 31, 0.22); }
+.breath-ring:nth-child(3) { inset: 28%; animation-delay: 0.56s; }
+.breath-ring:nth-child(4) { inset: 42%; animation-delay: 0.84s; border-color: rgba(180, 68, 31, 0.3); }
+
+.breath-core {
+    width: 26%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.9;
+    animation: breathe-core 11s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
+@keyframes breathe {
+    0%, 100% { transform: scale(0.9); opacity: 0.55; }
+    36%      { transform: scale(1.06); opacity: 1; }
+    45%      { transform: scale(1.06); opacity: 1; }
+}
+
+@keyframes breathe-core {
+    0%, 100% { transform: scale(0.82); }
+    36%      { transform: scale(1.14); }
+    45%      { transform: scale(1.14); }
+}
+
+/* ============================================================
+   Segmented control
+   The colour transition is a clip-path on a duplicated track.
+   Timing individual colour transitions can never match this.
+   ============================================================ */
+
+.switcher {
+    position: sticky;
+    top: 60px;
+    z-index: 30;
+    padding: 8px 0 0;
+    background: linear-gradient(to bottom, var(--paper) 62%, transparent);
+}
+
+.seg {
+    position: relative;
+    display: flex;
+    padding: 4px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.seg-track {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+}
+
+/* The clipped copy. Same geometry, inverted colours. */
+.seg-overlay {
+    position: absolute;
+    inset: 4px;
+    display: flex;
+    pointer-events: none;
+    clip-path: inset(0 100% 0 0 round 999px);
+    transition: clip-path 380ms var(--ease-in-out);
+    will-change: clip-path;
+}
+
+.seg-overlay .seg-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    border-radius: 999px;
+}
+
+.seg-item {
+    flex: 1;
+    min-width: 0;
+    appearance: none;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+    padding: 13px 18px;
+    border-radius: 999px;
+    color: var(--ink-muted);
+    text-align: center;
+    transition: color 220ms ease, transform 150ms var(--ease-out);
+}
+
+.seg-item:active { transform: scale(0.985); }
+.seg-item[aria-selected="true"] { color: transparent; }
+
+@media (hover: hover) and (pointer: fine) {
+    .seg-item[aria-selected="false"]:hover { color: var(--ink); }
+}
+
+.seg-overlay .seg-item {
+    position: relative;
+    color: var(--paper);
+    font-weight: 500;
+}
+
+/* ============================================================
+   Panels
+   ============================================================ */
+
+/* The wrapper animates height so the swap never jumps the page.
+   Set explicitly in JS, released to auto on transitionend. */
+.panels {
+    position: relative;
+    overflow: hidden;
+    transition: height 400ms var(--ease-in-out);
+}
+
+.panel {
+    padding: 56px 0 8px;
+}
+
+.panel[hidden] { display: none !important; }
+
+/* Blur bridges the crossfade. Without it you see two documents
+   overlapping instead of one changing. */
+.panel[data-state="leaving"],
+.panel[data-state="entering"] {
+    position: absolute;
+    inset: 0 0 auto;
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(6px);
+}
+
+.panel[data-state="leaving"] {
+    transition: opacity 180ms ease, filter 180ms ease, transform 180ms ease;
+}
+
+.panel[data-state="settled"] {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+    transition: opacity 300ms var(--ease-out) 60ms, filter 300ms var(--ease-out) 60ms, transform 300ms var(--ease-out) 60ms;
+}
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 64px;
+    align-items: start;
+}
+
+/* Stagger. 46ms apart — long enough to read as a cascade,
+   short enough that nothing feels withheld. */
+.stagger > * {
+    opacity: 0;
+    transform: translateY(9px);
+    animation: rise 460ms var(--ease-out) forwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 30ms; }
+.stagger > *:nth-child(2) { animation-delay: 76ms; }
+.stagger > *:nth-child(3) { animation-delay: 122ms; }
+.stagger > *:nth-child(4) { animation-delay: 168ms; }
+.stagger > *:nth-child(5) { animation-delay: 214ms; }
+.stagger > *:nth-child(6) { animation-delay: 260ms; }
+.stagger > *:nth-child(7) { animation-delay: 306ms; }
+
+@keyframes rise {
+    to { opacity: 1; transform: none; }
+}
+
+/* Indication block: numbered, hairline-ruled, no cards. */
+.indication {
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 0 20px;
+}
+
+.indication:last-of-type { border-bottom: 1px solid var(--rule); }
+
+.indication-no {
+    font-family: 'Literata', Georgia, serif;
+    font-variation-settings: 'opsz' 20;
+    font-size: 15px;
+    color: var(--accent);
+    padding-top: 5px;
+    font-variant-numeric: tabular-nums;
+}
+
+.indication h2 {
+    font-family: 'Literata', Georgia, serif;
+    font-variation-settings: 'opsz' 32;
+    font-size: clamp(23px, 2.6vw, 31px);
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    text-wrap: balance;
+}
+
+/* Training lists the two disciplines as headings only. No dead space under them. */
+.indication h2:last-child { margin-bottom: 0; }
+
+.indication p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.62;
+    max-width: 56ch;
+}
+
+.multiline { white-space: pre-line; }
+
+.panel-lede {
+    font-size: clamp(18px, 1.9vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 54ch;
+    text-wrap: pretty;
+}
+
+.notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    background: var(--accent-tint);
+    border-left: 2px solid var(--accent);
+    padding: 13px 16px;
+    border-radius: 0 6px 6px 0;
+}
+
+.notice::before {
+    content: "";
+    flex: none;
+    width: 6px;
+    height: 6px;
+    margin-top: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: transform 150ms var(--ease-out), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.btn:active { transform: scale(0.972); }
+
+.btn-arrow {
+    flex: none;
+    width: 15px;
+    height: 15px;
+    transition: transform 260ms var(--ease-out);
+}
+
+.btn--primary {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btn--primary:hover { background: var(--accent); border-color: var(--accent); }
+    .btn--ghost:hover { border-color: var(--ink); background: rgba(255, 255, 255, 0.6); }
+    .btn:hover .btn-arrow { transform: translateX(3px); }
+}
+
+/* Figure. Reveals with a clip inset when it enters the viewport —
+   the image arrives, it does not pop. */
+.figure {
+    position: relative;
+    margin: 0;
+}
+
+/* height:auto matters here: the width/height attributes on the img are
+   presentational hints, and the height hint would otherwise pin the photo to
+   its intrinsic pixel height. The attributes stay so space is reserved. */
+.figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* Armed by JS only. Without JS the image is simply there —
+   a reveal must never be the reason content stays invisible. */
+.figure[data-armed] img {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.03);
+    transition: clip-path 900ms var(--ease-soft), transform 900ms var(--ease-soft);
+}
+
+.figure[data-armed][data-inview="true"] img {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+}
+
+.figure figcaption {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Sticky rail so the figure follows the reader on long copy. */
+@media (min-width: 900px) {
+    .figure { position: sticky; top: 140px; }
+}
+
+/* ============================================================
+   Contact strip
+   ============================================================ */
+
+.strip {
+    margin-top: 96px;
+    border-top: 1px solid var(--rule);
+    padding: 44px 0;
+}
+
+.strip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 40px;
+}
+
+.strip h3 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+}
+
+.strip ul { list-style: none; }
+
+.linkline {
+    display: block;
+    padding: 6px 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    line-height: 1.45;
+    position: relative;
+    transition: color 180ms ease, transform 220ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .linkline:hover { color: var(--accent); transform: translateX(3px); }
+}
+
+.linkline-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.02em;
+    margin-top: 1px;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+
+footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 52px 0 26px;
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 56px;
+    align-items: flex-end;
+}
+
+.footer-mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+}
+
+.footer-mark img { width: 34px; height: 34px; }
+
+.footer-mark span {
+    font-family: 'Literata', Georgia, serif;
+    font-variation-settings: 'opsz' 24;
+    font-size: 22px;
+}
+
+.social-icons { display: flex; gap: 8px; }
+
+.social-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(241, 237, 230, 0.18);
+    color: var(--paper);
+    text-decoration: none;
+    transition: transform 170ms var(--ease-out), background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.social-icon svg { width: 17px; height: 17px; }
+.social-icon:active { transform: scale(0.93); }
+
+@media (hover: hover) and (pointer: fine) {
+    .social-icon:hover { transform: translateY(-2px); border-color: var(--paper); }
+    .social-icon.whatsapp:hover  { background: var(--paper); color: #25D366; }
+    .social-icon.youtube:hover   { background: var(--paper); color: #FF0000; }
+    .social-icon.patreon:hover   { background: var(--paper); color: #FF424D; }
+    .social-icon.instagram:hover { background: var(--paper); }
+    .social-icon.instagram:hover path { fill: url(#instagram-gradient); }
+}
+
+.social-icon.instagram path { fill: currentColor; }
+
+.footer-legal {
+    max-width: var(--shell);
+    margin: 34px auto 0;
+    padding: 20px 28px 0;
+    border-top: 1px solid rgba(241, 237, 230, 0.13);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 26px;
+    align-items: center;
+}
+
+.footer-legal a,
+.footer-legal p {
+    font-size: 12px;
+    color: rgba(241, 237, 230, 0.5);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 180ms ease;
+}
+
+.footer-legal p:last-child { margin-left: auto; }
+
+@media (hover: hover) and (pointer: fine) {
+    .footer-legal a:hover { color: var(--paper); }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .breath { max-width: 200px; }
+    .panel-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-tagline { max-width: 30ch; }
+}
+
+@media (max-width: 660px) {
+    .shell, .masthead-inner { padding-left: 20px; padding-right: 20px; }
+    .hero { padding: 60px 0 48px; }
+    .seg { flex-direction: column; border-radius: 18px; }
+    .seg-track { flex-direction: column; }
+    .seg-overlay { flex-direction: column; clip-path: inset(0 0 100% 0 round 14px); }
+    .seg-overlay .seg-fill { border-radius: 14px; }
+    .seg-item { text-align: left; border-radius: 14px; }
+    .actions .btn { flex: 1 1 100%; justify-content: space-between; }
+    .footer-legal p:last-child { margin-left: 0; width: 100%; }
+}
+
+/* ============================================================
+   Reduced motion — fewer and gentler, not zero.
+   Opacity and colour stay; movement goes.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .breath-ring, .breath-core { animation: none; }
+    .breath-ring { opacity: 0.8; }
+
+    .stagger > * { animation: none; opacity: 1; transform: none; }
+
+    .figure[data-armed] img { clip-path: none; transform: none; transition: none; }
+
+    .panel[data-state="leaving"],
+    .panel[data-state="entering"] { transform: none; filter: none; }
+    .panel[data-state="settled"] { transform: none; filter: none; transition: opacity 220ms ease; }
+    .panels { transition: none; }
+
+    .seg-overlay { transition: clip-path 1ms linear; }
+    .lang-thumb { transition: none; }
+
+    .btn:active, .seg-item:active, .lang-btn:active, .social-icon:active { transform: none; }
+
+    @media (hover: hover) and (pointer: fine) {
+        .btn:hover .btn-arrow,
+        .linkline:hover,
+        .social-icon:hover,
+        .wordmark:hover img { transform: none; }
+    }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f09433"/>
+            <stop offset="25%" stop-color="#e6683c"/>
+            <stop offset="50%" stop-color="#dc2743"/>
+            <stop offset="75%" stop-color="#cc2366"/>
+            <stop offset="100%" stop-color="#bc1888"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<header class="masthead" id="masthead">
+    <div class="masthead-inner">
+        <a class="wordmark" href="#top" aria-label="ulamove">
+            <img src="../../images/ulamove_logo.png" alt="">
+            <span class="wordmark-text">ulamove</span>
+        </a>
+        <div class="lang" id="lang" role="group" aria-label="Sprache / Language">
+            <span class="lang-thumb" id="lang-thumb" aria-hidden="true"></span>
+            <button class="lang-btn active" data-lang="de" aria-pressed="true">DE</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+        </div>
+    </div>
+</header>
+
+<main id="top">
+    <section class="hero shell">
+        <div class="hero-grid">
+            <div>
+                <div class="hero-eyebrow">
+                    <span class="meta" data-i18n="location"></span>
+                </div>
+                <h1 data-i18n="title"></h1>
+                <p class="hero-tagline" data-i18n="tagline"></p>
+            </div>
+            <div class="breath" aria-hidden="true">
+                <span class="breath-ring"></span>
+                <span class="breath-ring"></span>
+                <span class="breath-ring"></span>
+                <span class="breath-ring"></span>
+                <span class="breath-core"></span>
+            </div>
+        </div>
+    </section>
+
+    <div class="switcher">
+        <div class="shell">
+            <div class="seg" id="seg">
+                <div class="seg-track" role="tablist" aria-label="Angebot">
+                    <button class="seg-item" id="physio-btn" role="tab" aria-selected="true"
+                            aria-controls="physio-content" data-i18n="physio-btn"></button>
+                    <button class="seg-item" id="training-btn" role="tab" aria-selected="false"
+                            aria-controls="training-content" data-i18n="training-btn"></button>
+                </div>
+                <div class="seg-overlay" id="seg-overlay" aria-hidden="true">
+                    <span class="seg-fill"></span>
+                    <span class="seg-item" data-i18n="physio-btn"></span>
+                    <span class="seg-item" data-i18n="training-btn"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panels shell" id="panels">
+
+        <!-- Physiotherapie -->
+        <section class="panel" id="physio-content" role="tabpanel" aria-labelledby="physio-btn" data-state="settled">
+            <div class="panel-grid">
+                <div class="stagger">
+                    <div class="indication">
+                        <span class="indication-no">01</span>
+                        <div>
+                            <h2 data-i18n="physio-group1"></h2>
+                            <p class="multiline" data-i18n="physio-group1-desc"></p>
+                        </div>
+                    </div>
+                    <div class="indication">
+                        <span class="indication-no">02</span>
+                        <div>
+                            <h2 data-i18n="physio-group2"></h2>
+                            <p class="multiline" data-i18n="physio-group2-desc"></p>
+                        </div>
+                    </div>
+                    <p class="notice" data-i18n="physio-private" style="margin-top:26px"></p>
+                    <div class="actions" style="margin-top:24px">
+                        <!-- <a href="https://cal.com/ulamove/privattermin-physiotherapie" target="_blank" rel="noopener" class="btn btn--primary" data-i18n="physio-cta1"></a> -->
+                        <a href="https://cal.com/ulamove/privattermin-physiotherapie-copy" target="_blank" rel="noopener" class="btn btn--primary">
+                            <span data-i18n="physio-cta2"></span>
+                            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <figure class="figure" data-reveal>
+                    <img src="../../images/ulamove-physio.jpg" alt="Physiotherapie" width="725" height="745" fetchpriority="high">
+                    <figcaption>
+                        <span class="meta" data-i18n="physio-btn"></span>
+                        <span class="meta">Köln</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Training -->
+        <section class="panel" id="training-content" role="tabpanel" aria-labelledby="training-btn" hidden>
+            <div class="panel-grid">
+                <div class="stagger">
+                    <div class="indication">
+                        <span class="indication-no">01</span>
+                        <div><h2 data-i18n="training-title-1"></h2></div>
+                    </div>
+                    <div class="indication">
+                        <span class="indication-no">02</span>
+                        <div><h2 data-i18n="training-title-2"></h2></div>
+                    </div>
+                    <p class="panel-lede" data-i18n="training-desc" style="margin-top:30px"></p>
+                    <div class="actions" style="margin-top:28px">
+                        <a href="../../training" class="btn btn--primary">
+                            <span data-i18n="training-cta"></span>
+                            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://cal.com/ulamove" target="_blank" rel="noopener" class="btn btn--ghost">
+                            <span data-i18n="training-schedule"></span>
+                            <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <figure class="figure" data-reveal>
+                    <img src="../../images/ulamove-training.jpg" alt="Training" width="1024" height="1024" loading="lazy">
+                    <figcaption>
+                        <span class="meta" data-i18n="training-title-1"></span>
+                        <span class="meta">Köln</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </div>
+
+    <section class="strip shell">
+        <div class="strip-grid">
+            <div>
+                <h3>Kontakt</h3>
+                <ul>
+                    <li><a class="linkline" href="tel:01636970231">0163 / 697 02 31</a></li>
+                    <li><a class="linkline" href="mailto:contact@ulamove.de">contact@ulamove.de</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Lokationen</h3>
+                <ul>
+                    <li>
+                        <a class="linkline" href="https://goo.gl/maps/bJMBpxYaZGF3QJdj6" target="_blank" rel="noopener">
+                            Düsseldorfer Straße 74
+                            <span class="linkline-sub">51063 Köln-Mülheim</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkline" href="https://maps.app.goo.gl/UfXQppQtye3kbV6V9" target="_blank" rel="noopener">
+                            Berrenrather Str. 136
+                            <span class="linkline-sub">50937 Köln-Sülz</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a class="linkline" href="../../impressum">Impressum</a></li>
+                    <li><a class="linkline" href="../../datenshutz">Datenschutz</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="shell">
+        <div class="footer-grid">
+            <div class="footer-mark">
+                <img src="../../images/ulamove_logo.png" alt="">
+                <span>ulamove</span>
+            </div>
+            <div>
+                <h3 class="meta" style="margin-bottom:12px">Folgen Sie mir</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/491636970231" target="_blank" rel="noopener" class="social-icon whatsapp" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/UCIU9Seu8jZDRogf6vOAB3XA" target="_blank" rel="noopener" class="social-icon youtube" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/ula_move" target="_blank" rel="noopener" class="social-icon instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.patreon.com/ulamove" target="_blank" rel="noopener" class="social-icon patreon" aria-label="Patreon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-legal">
+        <a href="../../impressum">Impressum</a>
+        <a href="../../datenshutz">Datenschutz</a>
+        <p>&copy; Julia Sperling 2020</p>
+    </div>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    /* ---------------------------------------------------------
+       Segmented control: the clip follows the active button's
+       real box, so it works in both row and column layout.
+       --------------------------------------------------------- */
+    var seg = document.getElementById('seg');
+    var segOverlay = document.getElementById('seg-overlay');
+    var tabs = [document.getElementById('physio-btn'), document.getElementById('training-btn')];
+    var panelsWrap = document.getElementById('panels');
+    var panels = [document.getElementById('physio-content'), document.getElementById('training-content')];
+    var active = 0;
+
+    function moveClip(index, animate) {
+        var btn = tabs[index];
+        var box = seg.getBoundingClientRect();
+        var r = btn.getBoundingClientRect();
+        var pad = 4;
+        var top = Math.max(0, r.top - box.top - pad);
+        var left = Math.max(0, r.left - box.left - pad);
+        var right = Math.max(0, box.right - pad - r.right);
+        var bottom = Math.max(0, box.bottom - pad - r.bottom);
+        var radius = window.innerWidth <= 660 ? '14px' : '999px';
+
+        if (!animate) segOverlay.style.transition = 'none';
+        segOverlay.style.clipPath = 'inset(' + top + 'px ' + right + 'px ' + bottom + 'px ' + left + 'px round ' + radius + ')';
+        if (!animate) {
+            void segOverlay.offsetWidth;
+            segOverlay.style.transition = '';
+        }
+    }
+
+    /* ---------------------------------------------------------
+       Panel swap. Height is animated on the wrapper so the page
+       never jumps; the outgoing panel blurs out, the incoming
+       one settles in. Transitions, not keyframes — a fast
+       double-tap retargets instead of restarting.
+       --------------------------------------------------------- */
+    var swapping = false;
+
+    function replay(el) {
+        /* Restart the stagger without keyframe leftovers. */
+        var items = el.querySelectorAll('.stagger > *');
+        for (var i = 0; i < items.length; i++) {
+            items[i].style.animation = 'none';
+            void items[i].offsetWidth;
+            items[i].style.animation = '';
+        }
+    }
+
+    function select(index) {
+        if (index === active) return;
+
+        var from = panels[active];
+        var to = panels[index];
+        active = index;
+
+        tabs.forEach(function (t, i) { t.setAttribute('aria-selected', i === index ? 'true' : 'false'); });
+        moveClip(index, true);
+
+        if (reduced.matches) {
+            from.hidden = true;
+            from.removeAttribute('data-state');
+            to.hidden = false;
+            to.setAttribute('data-state', 'entering');
+            void to.offsetWidth;
+            to.setAttribute('data-state', 'settled');
+            revealFigures();
+            return;
+        }
+
+        var startHeight = panelsWrap.getBoundingClientRect().height;
+
+        /* Measure the target off-flow before committing to a height. */
+        to.hidden = false;
+        to.setAttribute('data-state', 'entering');
+        replay(to);
+        var endHeight = to.getBoundingClientRect().height;
+
+        panelsWrap.style.height = startHeight + 'px';
+        void panelsWrap.offsetWidth;
+
+        from.setAttribute('data-state', 'leaving');
+        panelsWrap.style.height = endHeight + 'px';
+
+        swapping = true;
+        window.setTimeout(function () {
+            from.hidden = true;
+            from.removeAttribute('data-state');
+            to.removeAttribute('style');
+            to.setAttribute('data-state', 'settled');
+        }, 170);
+
+        window.setTimeout(function () {
+            panelsWrap.style.height = '';
+            swapping = false;
+            revealFigures();
+        }, 430);
+    }
+
+    tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(i); });
+    });
+
+    /* Arrow keys move between tabs. Keyboard actions get no animation
+       beyond the clip, which is the state indicator itself. */
+    seg.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        var step = e.key === 'ArrowRight' ? 1 : tabs.length - 1;
+        var next = (active + step) % tabs.length;
+        select(next);
+        tabs[next].focus();
+    });
+
+    /* ---------------------------------------------------------
+       Language pill thumb
+       --------------------------------------------------------- */
+    var langWrap = document.getElementById('lang');
+    var langThumb = document.getElementById('lang-thumb');
+    var langButtons = Array.prototype.slice.call(document.querySelectorAll('.lang-btn'));
+
+    function moveThumb(btn, animate) {
+        var box = langWrap.getBoundingClientRect();
+        var r = btn.getBoundingClientRect();
+        if (!animate) langThumb.style.transition = 'none';
+        langThumb.style.width = r.width + 'px';
+        langThumb.style.transform = 'translateX(' + (r.left - box.left - 3) + 'px)';
+        if (!animate) {
+            void langThumb.offsetWidth;
+            langThumb.style.transition = '';
+        }
+    }
+
+    /* ---------------------------------------------------------
+       Translations. One source of truth: the shared JSON files.
+       --------------------------------------------------------- */
+    var cache = {};
+
+    function loadTranslations(lang) {
+        if (cache[lang]) return Promise.resolve(cache[lang]);
+        return fetch('../../translations/' + lang + '.json')
+            .then(function (r) { return r.json(); })
+            .then(function (json) { cache[lang] = json; return json; })
+            .catch(function (err) {
+                console.error('Error loading translations for ' + lang + ':', err);
+                return {};
+            });
+    }
+
+    function applyTranslations(t) {
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var i = 0; i < nodes.length; i++) {
+            var key = nodes[i].getAttribute('data-i18n');
+            if (t[key]) nodes[i].textContent = t[key];
+        }
+        /* Labels changed length, so the clip and thumb geometry moved. */
+        requestAnimationFrame(function () {
+            moveClip(active, false);
+            var current = document.querySelector('.lang-btn.active');
+            if (current) moveThumb(current, false);
+        });
+    }
+
+    langButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            langButtons.forEach(function (b) {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+            moveThumb(btn, true);
+
+            var lang = btn.getAttribute('data-lang');
+            document.documentElement.lang = lang;
+            loadTranslations(lang).then(applyTranslations);
+        });
+    });
+
+    /* ---------------------------------------------------------
+       Figure reveal
+       --------------------------------------------------------- */
+    var observer = null;
+    if ('IntersectionObserver' in window) {
+        observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.setAttribute('data-inview', 'true');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    }
+
+    function revealFigures() {
+        var figures = document.querySelectorAll('.figure:not([data-inview])');
+        for (var i = 0; i < figures.length; i++) {
+            if (observer && !reduced.matches) {
+                figures[i].setAttribute('data-armed', '');
+                observer.observe(figures[i]);
+            } else {
+                figures[i].setAttribute('data-inview', 'true');
+            }
+        }
+    }
+
+    /* ---------------------------------------------------------
+       Masthead hairline appears only once the page has moved.
+       --------------------------------------------------------- */
+    var masthead = document.getElementById('masthead');
+    var ticking = false;
+
+    function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+            masthead.setAttribute('data-scrolled', window.scrollY > 8 ? 'true' : 'false');
+            ticking = false;
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ---------------------------------------------------------
+       Boot
+       --------------------------------------------------------- */
+    loadTranslations('de').then(applyTranslations);
+    revealFigures();
+    onScroll();
+
+    window.addEventListener('resize', function () {
+        if (swapping) return;
+        moveClip(active, false);
+        var current = document.querySelector('.lang-btn.active');
+        if (current) moveThumb(current, false);
+    });
+
+    /* Fonts land after first paint and change every text box. */
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+            moveClip(active, false);
+            var current = document.querySelector('.lang-btn.active');
+            if (current) moveThumb(current, false);
+        });
+    }
+})();
+</script>
+</body>
+</html>
