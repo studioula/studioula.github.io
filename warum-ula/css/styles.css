@@ -1,0 +1,299 @@
+.why-ula-page {
+    --why-ula-blue: #1768c5;
+    --why-ula-blue-dark: #0c57ad;
+    --why-ula-purple: #6a42e3;
+    --why-ula-text: #1d1d1f;
+    --why-ula-text-muted: #424245;
+    --why-ula-border: #d9d9de;
+    background:
+        radial-gradient(circle at top left, rgba(45, 127, 234, 0.11), transparent 34rem),
+        #f5f5f7;
+}
+
+.why-ula-page .why-ula-header {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.why-ula-header .site-topbar {
+    margin-bottom: 0;
+}
+
+.why-ula-header .brand-link,
+.why-ula-header .lang-btn {
+    min-height: 44px;
+}
+
+.why-ula-header .lang-btn {
+    min-width: 44px;
+    border-color: #8e8e93;
+    color: var(--why-ula-text);
+}
+
+.why-ula-header .lang-btn:hover:not(.active) {
+    border-color: #68798c;
+    background-color: #e8eef7;
+}
+
+.why-ula-header .lang-btn.active {
+    border-color: var(--why-ula-blue);
+    background-color: var(--why-ula-blue);
+    color: #fff;
+}
+
+.why-ula-page .why-ula-main {
+    max-width: 1120px;
+    padding: 16px 20px 0;
+}
+
+.why-ula-page .why-ula-card {
+    max-width: none;
+    margin: 0;
+    padding: clamp(2rem, 5vw, 4.5rem);
+    overflow: hidden;
+    border: 1px solid #e5e5e9;
+    border-radius: 24px;
+    background-color: #fff;
+    box-shadow: 0 18px 55px rgba(29, 29, 31, 0.08);
+}
+
+.why-ula-section {
+    margin-inline: auto;
+}
+
+.why-ula-section:not(.why-ula-gallery-section) {
+    max-width: 46rem;
+}
+
+.why-ula-section + .why-ula-section {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+
+.why-ula-card .why-ula-section h1 {
+    margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+    color: var(--why-ula-blue-dark);
+    font-size: clamp(2.4rem, 7vw, 3.75rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    -webkit-text-fill-color: currentColor;
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .why-ula-card .why-ula-section h1 {
+        background: linear-gradient(90deg, var(--why-ula-blue), var(--why-ula-purple));
+        background-clip: text;
+        color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.why-ula-card .why-ula-section h2 {
+    margin: 0 0 1.5rem;
+    color: var(--why-ula-text);
+    font-size: clamp(1.65rem, 4vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.why-ula-card .why-ula-section p {
+    margin-bottom: 1.25rem;
+    color: var(--why-ula-text-muted);
+    font-size: clamp(1rem, 0.4vw + 0.92rem, 1.125rem);
+    line-height: 1.75;
+}
+
+.why-ula-card .why-ula-section p:last-child {
+    margin-bottom: 0;
+}
+
+.why-ula-card .why-ula-section strong {
+    color: #151517;
+    font-weight: 650;
+}
+
+.why-ula-card .why-ula-section:first-child > p:first-of-type strong {
+    display: block;
+    font-size: clamp(1.12rem, 0.55vw + 1rem, 1.3rem);
+    line-height: 1.65;
+}
+
+.why-ula-gallery-section {
+    max-width: 100%;
+}
+
+.why-ula-gallery-section > h2 {
+    max-width: 46rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+
+.history-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.history-gallery figure {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--why-ula-border);
+    border-radius: 16px;
+    background-color: #f7f7f9;
+    box-shadow: 0 8px 24px rgba(29, 29, 31, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.history-gallery figure:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 30px rgba(29, 29, 31, 0.13);
+}
+
+.history-gallery .image-container {
+    aspect-ratio: 3 / 2;
+    flex: none;
+    overflow: hidden;
+    background-color: #e8e8ed;
+}
+
+.gallery-link,
+.gallery-link picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-link {
+    cursor: zoom-in;
+}
+
+.history-gallery .image-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: none;
+    transition: transform 0.25s ease;
+}
+
+.history-gallery figure:hover img {
+    transform: scale(1.025);
+}
+
+.history-gallery figcaption {
+    flex: 1;
+    padding: 0.9rem 1rem 1rem;
+    color: var(--why-ula-text-muted);
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+.why-ula-page a:focus-visible,
+.why-ula-page button:focus-visible {
+    outline: 3px solid var(--why-ula-blue-dark);
+    outline-offset: 3px;
+}
+
+.why-ula-page .gallery-link:focus-visible {
+    outline-color: #fff;
+    outline-offset: -6px;
+    box-shadow: inset 0 0 0 9px var(--why-ula-blue-dark);
+}
+
+.why-ula-page footer {
+    margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+
+.why-ula-page .footer-section h2 {
+    margin-bottom: 1rem;
+    color: #f5f5f7;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.why-ula-page .footer-section a,
+.why-ula-page .footer-copyright p {
+    color: #c7c7cc;
+}
+
+.why-ula-page .footer-section a:hover {
+    color: #8ec5ff;
+}
+
+.why-ula-page .footer-section a:focus-visible {
+    outline-color: #8ec5ff;
+}
+
+.why-ula-page .contact-info {
+    font-style: normal;
+}
+
+@media (min-width: 640px) {
+    .why-ula-page .why-ula-header {
+        padding-top: 28px;
+    }
+
+    .why-ula-page .why-ula-main {
+        padding-top: 24px;
+    }
+
+    .history-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 960px) {
+    .history-gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .why-ula-page .why-ula-header {
+        padding: 14px 12px 0;
+    }
+
+    .why-ula-page .why-ula-main {
+        padding: 18px 12px 0;
+    }
+
+    .why-ula-page .why-ula-card {
+        padding: 2rem 1.125rem;
+        border-radius: 18px;
+    }
+
+    .why-ula-header .site-topbar {
+        gap: 0.75rem;
+    }
+
+    .why-ula-page .footer-content {
+        gap: 2rem;
+    }
+
+    .why-ula-page .footer-section {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .why-ula-page *,
+    .why-ula-page *::before,
+    .why-ula-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .history-gallery figure:hover,
+    .history-gallery figure:hover img {
+        transform: none;
+    }
+}

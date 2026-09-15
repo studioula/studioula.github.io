@@ -17,6 +17,45 @@ body {
     padding: 30px 10px;
 }
 
+.site-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+}
+
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 4px 10px 4px 4px;
+    border-radius: 12px;
+    color: #1d1d1f;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.brand-link-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.brand-link:hover {
+    color: #2d7fea;
+    background-color: rgba(45, 127, 234, 0.08);
+}
+
+.brand-link:focus-visible,
+.lang-btn:focus-visible {
+    outline: 3px solid rgba(45, 127, 234, 0.45);
+    outline-offset: 3px;
+}
+
 header {
     text-align: center;
     margin-bottom: 60px;
@@ -155,7 +194,7 @@ h1 {
 .language-switcher {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    gap: 10px;
 }
 
 .lang-btn {
@@ -163,7 +202,8 @@ h1 {
     border: 1px solid #e0e0e0;
     border-radius: 4px;
     padding: 5px 10px;
-    margin-left: 10px;
+    min-width: 40px;
+    min-height: 34px;
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -177,6 +217,20 @@ h1 {
     background-color: #2d7fea;
     color: white;
     border-color: #2d7fea;
+}
+
+@media (max-width: 520px) {
+    .site-topbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .brand-link,
+    .language-switcher {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .notice {

@@ -36,5 +36,6 @@ out/
 ### VS Code ###
 .vscode/
 
+.issues
 
 ._.DS_Store
