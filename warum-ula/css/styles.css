@@ -1,19 +1,16 @@
 .why-ula-page {
-    --why-ula-blue: #1768c5;
-    --why-ula-blue-dark: #0c57ad;
+    --why-ula-blue: #2d7fea;
+    --why-ula-blue-dark: #1d6fd8;
     --why-ula-purple: #6a42e3;
     --why-ula-text: #1d1d1f;
-    --why-ula-text-muted: #424245;
+    --why-ula-text-muted: #515154;
     --why-ula-border: #d9d9de;
-    background:
-        radial-gradient(circle at top left, rgba(45, 127, 234, 0.11), transparent 34rem),
-        #f5f5f7;
 }
 
 .why-ula-page .why-ula-header {
-    max-width: 1120px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 10px 0;
     text-align: left;
 }
 
@@ -21,42 +18,20 @@
     margin-bottom: 0;
 }
 
-.why-ula-header .brand-link,
-.why-ula-header .lang-btn {
-    min-height: 44px;
-}
-
-.why-ula-header .lang-btn {
-    min-width: 44px;
-    border-color: #8e8e93;
-    color: var(--why-ula-text);
-}
-
-.why-ula-header .lang-btn:hover:not(.active) {
-    border-color: #68798c;
-    background-color: #e8eef7;
-}
-
-.why-ula-header .lang-btn.active {
-    border-color: var(--why-ula-blue);
-    background-color: var(--why-ula-blue);
-    color: #fff;
-}
-
 .why-ula-page .why-ula-main {
-    max-width: 1120px;
-    padding: 16px 20px 0;
+    max-width: 1200px;
+    padding: 20px 10px 0;
 }
 
 .why-ula-page .why-ula-card {
     max-width: none;
     margin: 0;
-    padding: clamp(2rem, 5vw, 4.5rem);
+    padding: 40px;
     overflow: hidden;
-    border: 1px solid #e5e5e9;
-    border-radius: 24px;
+    border: 0;
+    border-radius: 20px;
     background-color: #fff;
-    box-shadow: 0 18px 55px rgba(29, 29, 31, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }
 
 .why-ula-section {
@@ -72,11 +47,12 @@
 }
 
 .why-ula-card .why-ula-section h1 {
-    margin: 0 0 clamp(1.75rem, 4vw, 2.75rem);
+    margin: 0 0 30px;
     color: var(--why-ula-blue-dark);
-    font-size: clamp(2.4rem, 7vw, 3.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: normal;
     -webkit-text-fill-color: currentColor;
 }
 
@@ -91,18 +67,18 @@
 }
 
 .why-ula-card .why-ula-section h2 {
-    margin: 0 0 1.5rem;
+    margin: 0 0 20px;
     color: var(--why-ula-text);
-    font-size: clamp(1.65rem, 4vw, 2.25rem);
+    font-size: 32px;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: normal;
 }
 
 .why-ula-card .why-ula-section p {
-    margin-bottom: 1.25rem;
+    margin-bottom: 24px;
     color: var(--why-ula-text-muted);
-    font-size: clamp(1rem, 0.4vw + 0.92rem, 1.125rem);
-    line-height: 1.75;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 .why-ula-card .why-ula-section p:last-child {
@@ -116,8 +92,8 @@
 
 .why-ula-card .why-ula-section:first-child > p:first-of-type strong {
     display: block;
-    font-size: clamp(1.12rem, 0.55vw + 1rem, 1.3rem);
-    line-height: 1.65;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 .why-ula-gallery-section {
@@ -190,7 +166,7 @@
     flex: 1;
     padding: 0.9rem 1rem 1rem;
     color: var(--why-ula-text-muted);
-    font-size: 0.94rem;
+    font-size: 16px;
     line-height: 1.5;
 }
 
@@ -235,14 +211,6 @@
 }
 
 @media (min-width: 640px) {
-    .why-ula-page .why-ula-header {
-        padding-top: 28px;
-    }
-
-    .why-ula-page .why-ula-main {
-        padding-top: 24px;
-    }
-
     .history-gallery {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -256,29 +224,18 @@
 }
 
 @media (max-width: 520px) {
-    .why-ula-page .why-ula-header {
-        padding: 14px 12px 0;
-    }
-
-    .why-ula-page .why-ula-main {
-        padding: 18px 12px 0;
-    }
-
-    .why-ula-page .why-ula-card {
-        padding: 2rem 1.125rem;
-        border-radius: 18px;
-    }
-
-    .why-ula-header .site-topbar {
-        gap: 0.75rem;
-    }
-
     .why-ula-page .footer-content {
         gap: 2rem;
     }
 
     .why-ula-page .footer-section {
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-ula-card .why-ula-section h1 {
+        font-size: 36px;
     }
 }
 
