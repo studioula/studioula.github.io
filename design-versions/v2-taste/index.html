@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ulamove • Gesundheit & Wohlbefinden</title>
+    <meta name="description" content="Physiotherapie, Atemtherapie und therapeutisches Yoga in Köln-Mülheim und Köln-Sülz.">
+    <link rel="icon" type="image/png" href="../../images/ulamove_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- No build step on this site, so Google Fonts is linked rather than self-hosted.
+         Self-hosting via @font-face would be the faster option if a build is ever added. -->
+    <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400..800&family=Wix+Madefor+Text:wght@400..600&display=swap" rel="stylesheet">
+<style>
+/* =============================================================================
+   ulamove — Version 2
+
+   Aesthetic family: clinical editorial. Not an official design system, and not
+   glassmorphism or Apple Liquid Glass. Native CSS with semantic tokens, because
+   the site is static with no bundler.
+
+   Palette family: Forest (deep green + cool bone + one amber accent).
+   Deliberately NOT the warm-cream-plus-brass palette every wellness page uses.
+
+   Radius scale: 0. Sharp everywhere, buttons included.
+   Accent: amber, locked. Never used as small text, so contrast holds in both
+   themes. The only multi-colour element on the page is the 3px brand bar at the
+   very top, built from the six strokes of the painted logo. Exactly one instance.
+   ============================================================================= */
+
+:root {
+    color-scheme: light dark;
+
+    --bg:        #EDEFEA;
+    --bg-2:      #E3E7E0;
+    --fg:        #101A16;
+    --fg-muted:  #56635C;
+    --rule:      rgba(16, 26, 22, 0.15);
+    --rule-firm: rgba(16, 26, 22, 0.32);
+    --accent:    #D99A2B;
+    --on-accent: #101A16;
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --gutter: clamp(20px, 4.4vw, 68px);
+    --shell:  1320px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg:        #0D1613;
+        --bg-2:      #121F1A;
+        --fg:        #E8EDE6;
+        --fg-muted:  #93A39A;
+        --rule:      rgba(232, 237, 230, 0.17);
+        --rule-firm: rgba(232, 237, 230, 0.36);
+        --accent:    #E0A63C;
+        --on-accent: #0D1613;
+    }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Wix Madefor Text', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+::selection { background: var(--accent); color: var(--on-accent); }
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.shell {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+}
+
+.display {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+}
+
+/* The one multi-colour element. Six strokes of the painted logo, once. */
+.brandbar {
+    height: 3px;
+    background: linear-gradient(90deg,
+        #E9008A 0%, #E9008A 16%,
+        #F57A00 16%, #F57A00 33%,
+        #FBD200 33%, #FBD200 50%,
+        #00A94F 50%, #00A94F 66%,
+        #00B7E4 66%, #00B7E4 83%,
+        #0047BB 83%, #0047BB 100%);
+}
+
+/* =============================================================================
+   Nav — one line at desktop, 68px tall
+   ============================================================================= */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 240ms ease;
+}
+
+.nav[data-stuck="true"] { border-bottom-color: var(--rule); }
+
+.nav-inner {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 68px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.brand img { width: 28px; height: 28px; }
+
+.brand span {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+}
+
+.langs { display: flex; gap: 2px; }
+
+.lang-btn {
+    appearance: none;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--fg-muted);
+    padding: 8px 9px;
+    border-bottom: 2px solid transparent;
+    transition: color 180ms ease, border-color 180ms ease, transform 120ms var(--ease);
+}
+
+.lang-btn[aria-pressed="true"] {
+    color: var(--fg);
+    border-bottom-color: var(--accent);
+}
+
+.lang-btn:active { transform: translateY(1px); }
+
+@media (hover: hover) {
+    .lang-btn:hover { color: var(--fg); }
+}
+
+/* =============================================================================
+   Hero — asymmetric split, fits the first viewport
+   ============================================================================= */
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
+    align-items: stretch;
+    min-height: min(100dvh, 860px);
+    border-bottom: 1px solid var(--rule);
+}
+
+.hero-copy {
+    padding: clamp(40px, 6vw, 88px) clamp(28px, 5vw, 72px) clamp(40px, 5vw, 72px) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+    max-width: 820px;
+    margin-left: auto;
+    width: 100%;
+}
+
+.hero-place {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.hero-place::before {
+    content: "";
+    width: 30px;
+    height: 2px;
+    background: var(--accent);
+    flex: none;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 6.6vw, 92px);
+    max-width: 15ch;
+    text-wrap: balance;
+}
+
+.hero-sub {
+    font-size: clamp(19px, 1.55vw, 23px);
+    line-height: 1.4;
+    color: var(--fg-muted);
+    max-width: 30ch;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.hero-media {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-2);
+    border-left: 1px solid var(--rule);
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 38%;
+}
+
+/* =============================================================================
+   Buttons — radius 0, amber fill carries dark ink
+   ============================================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 24px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    transition: transform 140ms var(--ease), background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn::after {
+    content: "\2192";
+    font-size: 15px;
+    transition: transform 260ms var(--ease);
+}
+
+.btn--solid {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+.btn--line {
+    border-color: var(--rule-firm);
+    color: var(--fg);
+}
+
+@media (hover: hover) {
+    .btn:hover::after { transform: translateX(4px); }
+    .btn--solid:hover { background: var(--fg); color: var(--bg); }
+    .btn--line:hover { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+}
+
+/* =============================================================================
+   Section index — a sticky strip, not a tab card. Both offerings stay on the
+   page and stay indexable; this only jumps to them and marks where you are.
+   ============================================================================= */
+
+.index {
+    position: sticky;
+    top: 68px;
+    z-index: 40;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--rule);
+}
+
+.index-inner {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.index-link {
+    padding: 17px 0;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--fg-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 200ms ease, border-color 240ms ease;
+}
+
+.index-link + .index-link { padding-left: 28px; }
+
+.index-link[aria-current="true"] {
+    color: var(--fg);
+    border-bottom-color: var(--accent);
+}
+
+@media (hover: hover) {
+    .index-link:hover { color: var(--fg); }
+}
+
+/* =============================================================================
+   Section chrome
+   ============================================================================= */
+
+section[id] { scroll-margin-top: 128px; }
+
+.band { padding-block: clamp(64px, 9vw, 132px); }
+
+/* Wide enough that the Russian headings do not fragment into four short lines
+   with a stranded "&". German and English sit at two to three lines. */
+.band-head {
+    max-width: 44ch;
+    margin-bottom: clamp(40px, 5vw, 72px);
+}
+
+.band-head h2 {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(32px, 4.2vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+}
+
+/* --- Physiotherapie: left gutter numerals, grouped hairlines, brand mark --- */
+
+.indications {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 64px);
+    border-top: 1px solid var(--rule-firm);
+}
+
+/* A short amber rule anchors each indication group. No numerals: two items are
+   countable without being counted for the reader. */
+.item { padding-top: 26px; }
+
+.item::before {
+    content: "";
+    display: block;
+    width: 44px;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 22px;
+}
+
+.item h3 {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(21px, 2.1vw, 27px);
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-wrap: balance;
+}
+
+.item p {
+    color: var(--fg-muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.multiline { white-space: pre-line; }
+
+.physio-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 28px;
+    align-items: center;
+    margin-top: clamp(40px, 5vw, 64px);
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+}
+
+.notice {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--fg);
+    padding-left: 18px;
+    border-left: 3px solid var(--accent);
+    max-width: 48ch;
+}
+
+/* The painted logo, used large as the section's own visual. It is a real brand
+   asset, so it does the job a stock texture would otherwise fake. Blended into
+   the ground rather than laid on top, so it reads as a wash, not a sticker. */
+.mark {
+    position: absolute;
+    right: -5%;
+    top: -7%;
+    width: clamp(230px, 31vw, 500px);
+    opacity: 0.26;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mark { opacity: 0.22; mix-blend-mode: screen; }
+}
+
+.band--physio { position: relative; overflow: hidden; }
+.band--physio > .shell { position: relative; z-index: 1; }
+
+/* --- Training: full-bleed band, offset copy. A different layout family. ---
+
+   The band keeps the same deep forest in both themes, so the page never flips
+   into the opposite mode mid-scroll. On the light theme it reads as one
+   deliberate dark chapter; on the dark theme it reads as a lifted panel. */
+
+.band--training {
+    background: #14231E;
+    color: #E8EDE6;
+    border-block: 1px solid rgba(232, 237, 230, 0.1);
+}
+
+.band--training .band-head h2,
+.band--training .train-lede { color: #E8EDE6; }
+
+.train-bleed {
+    position: relative;
+    aspect-ratio: 12 / 5;
+    overflow: hidden;
+    background: #0A0F0D;
+}
+
+.train-bleed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 38%;
+}
+
+.train-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: start;
+    padding-top: clamp(40px, 5vw, 68px);
+}
+
+.train-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.train-titles h3 {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(27px, 3.4vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+}
+
+.train-titles h3 + h3 { color: var(--accent); }
+
+.train-lede {
+    font-size: clamp(17px, 1.35vw, 20px);
+    line-height: 1.58;
+    opacity: 0.82;
+    max-width: 62ch;
+}
+
+.train-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.band--training .btn--line {
+    border-color: rgba(232, 237, 230, 0.42);
+    color: #E8EDE6;
+}
+
+@media (hover: hover) {
+    .band--training .btn--line:hover {
+        background: #E8EDE6;
+        color: #14231E;
+        border-color: #E8EDE6;
+    }
+    .band--training .btn--solid:hover {
+        background: #E8EDE6;
+        color: #14231E;
+    }
+}
+
+/* --- Practice: two addresses side by side, a third layout family --- */
+
+.practice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(28px, 3.5vw, 56px);
+    border-top: 1px solid var(--rule-firm);
+    padding-top: 34px;
+}
+
+.card-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 16px;
+}
+
+.addr {
+    font-family: 'Wix Madefor Display', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(19px, 1.8vw, 24px);
+    line-height: 1.22;
+    letter-spacing: -0.018em;
+    text-decoration: none;
+    display: block;
+}
+
+.addr small {
+    display: block;
+    font-family: 'Wix Madefor Text', system-ui, sans-serif;
+    font-size: 14.5px;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--fg-muted);
+    margin-top: 7px;
+}
+
+.addr, .plainlink {
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 320ms var(--ease);
+}
+
+@media (hover: hover) {
+    .addr:hover, .plainlink:hover { background-size: 100% 2px; }
+}
+
+.plainlink {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 17px;
+    padding-bottom: 2px;
+}
+
+.contact-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+/* =============================================================================
+   Footer
+   ============================================================================= */
+
+footer {
+    border-top: 1px solid var(--rule-firm);
+    padding-block: 44px 30px;
+}
+
+.footer-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 44px;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 22px;
+    margin-right: auto;
+}
+
+.footer-legal a {
+    font-size: 14px;
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+@media (hover: hover) {
+    .footer-legal a:hover { color: var(--fg); }
+}
+
+.social-icons { display: flex; gap: 6px; }
+
+/* Brand marks kept from the existing site. These are the Simple Icons paths for
+   each network, not icons drawn by hand for this page. */
+.social-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--rule);
+    color: var(--fg);
+    text-decoration: none;
+    transition: transform 150ms var(--ease), background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+.social-icon svg { width: 17px; height: 17px; }
+.social-icon:active { transform: translateY(1px); }
+
+@media (hover: hover) {
+    .social-icon:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .social-icon.instagram:hover path { fill: url(#instagram-gradient); }
+}
+
+.social-icon.instagram path { fill: currentColor; }
+
+.copyright {
+    width: 100%;
+    padding-top: 26px;
+    margin-top: 8px;
+    border-top: 1px solid var(--rule);
+    font-size: 12.5px;
+    color: var(--fg-muted);
+}
+
+/* =============================================================================
+   Motion — reveal on enter. Communicates reading order, nothing more.
+   ============================================================================= */
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+[data-reveal][data-shown] {
+    opacity: 1;
+    transform: none;
+    transition:
+        opacity 620ms var(--ease) calc(var(--i, 0) * 70ms),
+        transform 620ms var(--ease) calc(var(--i, 0) * 70ms);
+}
+
+/* No JS, no observer, no problem: content is visible. */
+.no-js [data-reveal] { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] { opacity: 1; transform: none; }
+    [data-reveal][data-shown] { transition: none; }
+    .btn:active, .lang-btn:active, .social-icon:active { transform: none; }
+    .btn:hover::after { transform: none; }
+    .addr, .plainlink { transition: none; }
+}
+
+/* =============================================================================
+   Responsive
+   ============================================================================= */
+
+@media (max-width: 1000px) {
+    .hero {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+    .hero-copy {
+        padding: 56px var(--gutter) 44px;
+        max-width: none;
+        margin-left: 0;
+    }
+    /* The source photo is close to square, so a wide crop on a narrow screen
+       loses the person being treated. 4:3 keeps both faces in frame. */
+    .hero-media {
+        border-left: 0;
+        border-top: 1px solid var(--rule);
+        aspect-ratio: 4 / 3;
+    }
+    .hero-media img { object-position: 50% 42%; }
+    .hero h1 { max-width: 20ch; }
+    .train-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+    body { font-size: 16px; }
+
+    .indications { grid-template-columns: 1fr; gap: 0; }
+    .item + .item { border-top: 1px solid var(--rule); margin-top: 30px; }
+
+    .physio-foot { grid-template-columns: 1fr; align-items: start; }
+    .practice-grid { padding-top: 26px; }
+
+    .index-inner { grid-template-columns: 1fr; }
+    .index-link {
+        padding: 13px 0;
+        border-bottom: 0;
+        border-left: 2px solid transparent;
+        padding-left: 14px;
+    }
+    .index-link + .index-link { padding-left: 14px; border-top: 1px solid var(--rule); }
+    .index-link[aria-current="true"] {
+        border-bottom-color: transparent;
+        border-left-color: var(--accent);
+    }
+
+    .train-bleed { aspect-ratio: 4 / 3; }
+    .hero-actions .btn, .train-actions .btn { flex: 1 1 100%; justify-content: space-between; }
+    .footer-legal { width: 100%; }
+}
+</style>
+</head>
+<body class="no-js">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f09433"/>
+            <stop offset="25%" stop-color="#e6683c"/>
+            <stop offset="50%" stop-color="#dc2743"/>
+            <stop offset="75%" stop-color="#cc2366"/>
+            <stop offset="100%" stop-color="#bc1888"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<div class="brandbar" aria-hidden="true"></div>
+<span id="top-sentinel" aria-hidden="true"></span>
+
+<header class="nav" id="nav">
+    <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="ulamove">
+            <img src="../../images/ulamove_logo.png" alt="" width="28" height="28">
+            <span>ulamove</span>
+        </a>
+        <nav class="langs" aria-label="Sprache / Language">
+            <button class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="hero-place" data-i18n="location" data-reveal>Köln Mülheim • Köln Sülz</p>
+            <h1 class="display" data-i18n="title" data-reveal style="--i:1">Gesundheit &amp; Wohlbefinden</h1>
+            <p class="hero-sub" data-i18n="tagline" data-reveal style="--i:2">Wissenschaftlich fundierte Therapie &amp; achtsame Bewegung</p>
+            <div class="hero-actions" data-reveal style="--i:3">
+                <!-- <a class="btn btn--solid" href="https://cal.com/ulamove/privattermin-physiotherapie" target="_blank" rel="noopener" data-i18n="physio-cta1"></a> -->
+                <a class="btn btn--solid" href="https://cal.com/ulamove/privattermin-physiotherapie-copy" target="_blank" rel="noopener">
+                    <span data-i18n="physio-cta2">Termin Köln Sülz</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-media">
+            <img src="../../images/ulamove-physio.jpg" alt="Physiotherapie" width="725" height="745" fetchpriority="high">
+        </div>
+    </section>
+
+    <div class="index">
+        <div class="index-inner">
+            <a class="index-link" href="#physio" data-index-for="physio" data-i18n="physio-btn">Physiotherapie &amp; Atemtherapie</a>
+            <a class="index-link" href="#training" data-index-for="training" data-i18n="training-btn">Therapeutisches Yoga / Training &amp; Atemtraining</a>
+        </div>
+    </div>
+
+    <!-- Physiotherapie ------------------------------------------------------ -->
+    <section class="band band--physio" id="physio" aria-labelledby="physio-heading">
+        <img class="mark" src="../../images/ulamove_logo.png" alt="" aria-hidden="true" loading="lazy">
+        <div class="shell">
+            <div class="band-head" data-reveal>
+                <h2 id="physio-heading" data-i18n="physio-btn">Physiotherapie &amp; Atemtherapie</h2>
+            </div>
+
+            <div class="indications">
+                <div class="item" data-reveal>
+                    <h3 data-i18n="physio-group1">Atembezogene Beschwerden</h3>
+                    <p class="multiline" data-i18n="physio-group1-desc">z. B. COPD, Asthma, Emphysem, Lungenfibrose, Pneumonie, Long-COVID, postvirale Zustände, chronischer Husten, Dyspnoe und funktionelle Atemstörungen. 
+(Schwerpunkt: reflektorische Atemtherapie).</p>
+                </div>
+                <div class="item" data-reveal style="--i:1">
+                    <h3 data-i18n="physio-group2">Orthopädische, postoperative und chronische Beschwerden</h3>
+                    <p class="multiline" data-i18n="physio-group2-desc">z. B. Rücken- und Gelenkschmerzen, nach Operationen, funktionelle Dysbalancen sowie bei hoher körperlicher oder psychischer Belastung. 
+Ziel: Schmerzlinderung, bessere Schlafqualität, Regulation des Nervensystems und mehr Lebensqualität im Alltag.</p>
+                </div>
+            </div>
+
+            <div class="physio-foot" data-reveal>
+                <p class="notice" data-i18n="physio-private">Nur für Privatpatient:innen / Selbstzahler:innen mit Rezept.</p>
+                <a class="btn btn--solid" href="https://cal.com/ulamove/privattermin-physiotherapie-copy" target="_blank" rel="noopener">
+                    <span data-i18n="physio-cta2">Termin Köln Sülz</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training ------------------------------------------------------------ -->
+    <section class="band band--training" id="training" aria-labelledby="training-heading">
+        <div class="shell">
+            <div class="band-head" data-reveal>
+                <h2 id="training-heading" data-i18n="training-btn">Therapeutisches Yoga / Training &amp; Atemtraining</h2>
+            </div>
+        </div>
+        <div class="train-bleed" data-reveal>
+            <img src="../../images/ulamove-training.jpg" alt="Training" width="1024" height="1024" loading="lazy">
+        </div>
+        <div class="shell">
+            <div class="train-grid">
+                <div class="train-titles" data-reveal>
+                    <h3 data-i18n="training-title-1">Therapeutisches Yoga Training</h3>
+                    <h3 data-i18n="training-title-2">Atemtraining</h3>
+                </div>
+                <div data-reveal style="--i:1">
+                    <p class="train-lede" data-i18n="training-desc">Für Prävention, Regeneration &amp; innere Balance. Individuelles, medizinisch fundiertes Training - für Menschen, die ihre Gesundheit gezielt stärken möchten, egal ob präventiv oder mit bestehenden Einschränkungen. In persönlichen Einheiten oder kleinen Gruppen entsteht Raum für Bewegung, Atmung und bewusste Körperarbeit - damit sich der Körper wieder kraftvoll, frei und lebendig anfühlt.</p>
+                    <div class="train-actions">
+                        <a class="btn btn--solid" href="../../training">
+                            <span data-i18n="training-cta">Mehr erfahren</span>
+                        </a>
+                        <a class="btn btn--line" href="https://cal.com/ulamove" target="_blank" rel="noopener">
+                            <span data-i18n="training-schedule">Aktueller Trainingsplan</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Praxis -------------------------------------------------------------- -->
+    <section class="band" aria-labelledby="practice-heading">
+        <div class="shell">
+            <div class="band-head" data-reveal>
+                <h2 id="practice-heading">Lokationen</h2>
+            </div>
+            <div class="practice-grid">
+                <div data-reveal>
+                    <a class="addr" href="https://goo.gl/maps/bJMBpxYaZGF3QJdj6" target="_blank" rel="noopener">
+                        Düsseldorfer Straße 74
+                        <small>51063 Köln-Mülheim</small>
+                    </a>
+                </div>
+                <div data-reveal style="--i:1">
+                    <a class="addr" href="https://maps.app.goo.gl/UfXQppQtye3kbV6V9" target="_blank" rel="noopener">
+                        Berrenrather Str. 136
+                        <small>50937 Köln-Sülz</small>
+                    </a>
+                </div>
+                <div data-reveal style="--i:2">
+                    <p class="card-label">Kontakt</p>
+                    <div class="contact-stack">
+                        <a class="plainlink" href="tel:01636970231">0163 / 697 02 31</a>
+                        <a class="plainlink" href="mailto:contact@ulamove.de">contact@ulamove.de</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="shell">
+        <div class="footer-grid">
+            <div class="footer-legal">
+                <a href="../../impressum">Impressum</a>
+                <a href="../../datenshutz">Datenschutz</a>
+            </div>
+            <div class="social-icons" aria-label="Folgen Sie mir">
+                <a href="https://wa.me/491636970231" target="_blank" rel="noopener" class="social-icon whatsapp" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/></svg>
+                </a>
+                <a href="https://www.youtube.com/channel/UCIU9Seu8jZDRogf6vOAB3XA" target="_blank" rel="noopener" class="social-icon youtube" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/ula_move" target="_blank" rel="noopener" class="social-icon instagram" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://www.patreon.com/ulamove" target="_blank" rel="noopener" class="social-icon patreon" aria-label="Patreon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/></svg>
+                </a>
+            </div>
+            <p class="copyright">&copy; Julia Sperling 2020</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    document.body.classList.remove('no-js');
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* -----------------------------------------------------------------
+       Reveal on enter. IntersectionObserver only. No scroll listener.
+       ----------------------------------------------------------------- */
+    var revealTargets = document.querySelectorAll('[data-reveal]');
+
+    if (reduced || !('IntersectionObserver' in window)) {
+        for (var i = 0; i < revealTargets.length; i++) {
+            revealTargets[i].setAttribute('data-shown', '');
+        }
+    } else {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.setAttribute('data-shown', '');
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+
+        for (var j = 0; j < revealTargets.length; j++) {
+            revealObserver.observe(revealTargets[j]);
+        }
+    }
+
+    /* -----------------------------------------------------------------
+       Nav hairline. A sentinel at the top of the document, observed,
+       instead of a scroll handler.
+       ----------------------------------------------------------------- */
+    var nav = document.getElementById('nav');
+    var sentinel = document.getElementById('top-sentinel');
+
+    if ('IntersectionObserver' in window && sentinel) {
+        new IntersectionObserver(function (entries) {
+            nav.setAttribute('data-stuck', entries[0].isIntersecting ? 'false' : 'true');
+        }, { threshold: 0 }).observe(sentinel);
+    }
+
+    /* -----------------------------------------------------------------
+       Section index: mark which offering the reader is in.
+       ----------------------------------------------------------------- */
+    var indexLinks = Array.prototype.slice.call(document.querySelectorAll('.index-link'));
+    var watched = indexLinks
+        .map(function (link) { return document.getElementById(link.getAttribute('data-index-for')); })
+        .filter(Boolean);
+
+    if ('IntersectionObserver' in window && watched.length) {
+        var visible = {};
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                visible[entry.target.id] = entry.isIntersecting ? entry.intersectionRatio : 0;
+            });
+            var best = null;
+            var bestRatio = 0;
+            Object.keys(visible).forEach(function (id) {
+                if (visible[id] > bestRatio) { bestRatio = visible[id]; best = id; }
+            });
+            indexLinks.forEach(function (link) {
+                var on = best !== null && link.getAttribute('data-index-for') === best;
+                link.setAttribute('aria-current', on ? 'true' : 'false');
+            });
+        }, { threshold: [0, 0.15, 0.4, 0.7], rootMargin: '-140px 0px -35% 0px' });
+
+        watched.forEach(function (section) { sectionObserver.observe(section); });
+    }
+
+    /* ---------------------------------------------------------
+       Translations. The shared JSON files stay the single source
+       of text for switching languages. The German strings are ALSO
+       written into the markup, so the page is never blank: opened
+       over file:// (a double-click) or with JavaScript off, the
+       German is already there and this only overwrites it.
+       Consequence: a German copy change has to be made in both
+       translations/de.json and the markup.
+       --------------------------------------------------------- */
+    var cache = {};
+
+    function loadTranslations(lang) {
+        if (cache[lang]) return Promise.resolve(cache[lang]);
+        return fetch('../../translations/' + lang + '.json')
+            .then(function (r) { return r.json(); })
+            .then(function (json) { cache[lang] = json; return json; })
+            .catch(function (err) {
+                /* Opened over file:// the browser blocks fetch, so the static
+                   German in the markup stays. Only DE/EN/RU switching needs
+                   a server. */
+                console.warn('Translations for ' + lang + ' unavailable, keeping the text in the markup:', err.message);
+                return {};
+            });
+    }
+
+    function applyTranslations(t) {
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var k = 0; k < nodes.length; k++) {
+            var key = nodes[k].getAttribute('data-i18n');
+            if (t[key]) nodes[k].textContent = t[key];
+        }
+    }
+
+    var langButtons = Array.prototype.slice.call(document.querySelectorAll('.lang-btn'));
+
+    langButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            langButtons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+
+            var lang = btn.getAttribute('data-lang');
+            document.documentElement.lang = lang;
+            loadTranslations(lang).then(applyTranslations);
+        });
+    });
+
+    loadTranslations('de').then(applyTranslations);
+})();
+</script>
+</body>
+</html>

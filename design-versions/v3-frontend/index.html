@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ulamove • Gesundheit & Wohlbefinden</title>
+    <meta name="description" content="Physiotherapie, Atemtherapie und therapeutisches Yoga in Köln-Mülheim und Köln-Sülz.">
+    <link rel="icon" type="image/png" href="../../images/ulamove_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..600&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400..800&display=swap" rel="stylesheet">
+<style>
+/* =============================================================================
+   ulamove — Version 3
+
+   The practice's specialty is reflektorische Atemtherapie, so breath is the
+   organising idea rather than a decorative one. A respiration trace runs down
+   the left rail of every section and draws itself as you scroll. Its shape is
+   not arbitrary: slow and deep beside the therapy content, faster and shallower
+   beside the training content, close to a resting line beside the addresses.
+
+   Palette is pulled off the top stroke of the painted logo (magenta) against a
+   pale cyan-white and a deep teal ink.
+   ============================================================================= */
+
+:root {
+    color-scheme: light dark;
+
+    --ground:   #EDF3F4;
+    --ground-2: #E2EBEC;
+    --plate:    #F7FAFA;
+    --ink:      #0C2A38;
+    --ink-soft: #4C6A76;
+    --hair:     rgba(12, 42, 56, 0.16);
+    --hair-2:   rgba(12, 42, 56, 0.08);
+    --flush:    #D6006E;
+    --on-flush: #FFFFFF;
+
+    --radius: 4px;
+    --rail: 44px;
+    --gutter: clamp(18px, 4vw, 56px);
+    --shell: 1240px;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ground:   #08202B;
+        --ground-2: #0B2833;
+        --plate:    #0D2E3B;
+        --ink:      #E4EFF1;
+        --ink-soft: #8FAEB8;
+        --hair:     rgba(228, 239, 241, 0.18);
+        --hair-2:   rgba(228, 239, 241, 0.09);
+        --flush:    #FF4D9D;
+        --on-flush: #10202B;
+    }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+::selection { background: var(--flush); color: var(--on-flush); }
+
+:focus-visible {
+    outline: 2px solid var(--flush);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* --- Type roles ---------------------------------------------------------- */
+
+.display {
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+/* =============================================================================
+   Nav
+   ============================================================================= */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--ground) 90%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hair-2);
+}
+
+.nav-inner {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.brand img { width: 26px; height: 26px; }
+
+.brand span {
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.025em;
+}
+
+.langs { display: flex; gap: 4px; }
+
+.lang-btn {
+    appearance: none;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    background: none;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    padding: 6px 8px;
+    transition: color 170ms ease, background-color 170ms ease, border-color 170ms ease;
+}
+
+.lang-btn[aria-pressed="true"] {
+    color: var(--on-flush);
+    background: var(--flush);
+    border-color: var(--flush);
+}
+
+@media (hover: hover) {
+    .lang-btn:not([aria-pressed="true"]):hover { color: var(--ink); border-color: var(--hair); }
+}
+
+/* =============================================================================
+   The rail — the page's signature
+   ============================================================================= */
+
+.row {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    column-gap: clamp(18px, 3vw, 40px);
+    align-items: stretch;
+}
+
+.rail {
+    position: relative;
+    grid-column: 1;
+}
+
+/* Clipped from the bottom, then opened as the section scrolls into view. The
+   trace appears to be drawn. No JavaScript, and no motion at all where the
+   browser lacks scroll-driven animations or the reader asked for less. */
+.rail-track {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 0 0 0);
+}
+
+.trace {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.trace path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.55;
+}
+
+/* The one point on the trace that carries the accent: the section's own start. */
+.rail::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 7px;
+    height: 7px;
+    margin-left: -3.5px;
+    border-radius: 50%;
+    background: var(--flush);
+    z-index: 1;
+}
+
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .rail-track {
+            animation: rail-draw linear both;
+            animation-timeline: view();
+            animation-range: entry 12% cover 62%;
+        }
+    }
+}
+
+@keyframes rail-draw {
+    from { clip-path: inset(0 0 100% 0); }
+    to   { clip-path: inset(0 0 0% 0); }
+}
+
+/* =============================================================================
+   Hero
+   ============================================================================= */
+
+.hero { padding: clamp(40px, 5vw, 72px) 0 clamp(36px, 4vw, 56px); }
+
+/* Bottom-aligned: the primary action and the foot of the photo land on the
+   same line, and the open space collects above the copy instead of splitting
+   into two dead bands. */
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(28px, 4vw, 64px);
+    align-items: end;
+}
+
+.hero-place { margin-bottom: 22px; }
+
+/* Capped at 76px so the longest single word in any of the three languages
+   ("благополучие") still fits the grid track instead of spilling into the
+   photo column. */
+.hero h1 {
+    font-size: clamp(40px, 5.4vw, 76px);
+    max-width: 13ch;
+    text-wrap: balance;
+    margin-bottom: 22px;
+}
+
+.hero-sub {
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.42;
+    color: var(--ink-soft);
+    max-width: 27ch;
+    margin-bottom: 30px;
+}
+
+/* Photographs are set as plates: a mono label, a hairline, then the image.
+   Same treatment for both, so they read as one series. */
+.plate { display: block; }
+
+.plate-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 12px;
+}
+
+/* height:auto is required, not cosmetic: the width/height attributes on the
+   img are presentational hints in the UA origin, and the height hint would
+   otherwise win over aspect-ratio and render the photo at its intrinsic pixel
+   height. The attributes stay so the browser can reserve space before load. */
+.plate img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--ground-2);
+}
+
+.plate--hero img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: 52% 34%;
+}
+
+.plate--wide img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: 50% 40%;
+}
+
+/* =============================================================================
+   Buttons
+   ============================================================================= */
+
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 20px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.004em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 130ms var(--ease), background-color 190ms ease, color 190ms ease, border-color 190ms ease;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex: none;
+    opacity: 0.55;
+    transition: transform 240ms var(--ease);
+}
+
+.btn--fill { background: var(--flush); color: var(--on-flush); }
+.btn--line { border-color: var(--hair); color: var(--ink); }
+
+@media (hover: hover) {
+    .btn--fill:hover { background: var(--ink); color: var(--ground); }
+    .btn--line:hover { border-color: var(--ink); }
+    .btn:hover .btn-dot { transform: scale(1.9); }
+}
+
+/* =============================================================================
+   Offering sections
+   ============================================================================= */
+
+.section { padding-block: clamp(48px, 6vw, 92px); }
+.section + .section { border-top: 1px solid var(--hair-2); }
+
+.section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: clamp(30px, 3.6vw, 52px);
+}
+
+.section-head h2 {
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(29px, 3.6vw, 50px);
+    line-height: 1.03;
+    letter-spacing: -0.028em;
+    max-width: 24ch;
+    text-wrap: balance;
+}
+
+/* Indication groups. Not numbered: two conditions are not a sequence, and
+   nothing about the order matters to the reader. */
+.groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(26px, 3vw, 46px);
+}
+
+/* No box. A magenta rule opens each group and the ground carries the rest,
+   which keeps the page from turning into a row of cards. */
+.group {
+    border-top: 2px solid var(--flush);
+    padding-top: 22px;
+}
+
+.group h3 {
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(20px, 1.9vw, 25px);
+    line-height: 1.14;
+    letter-spacing: -0.022em;
+    margin-bottom: 13px;
+    text-wrap: balance;
+}
+
+.group p {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.58;
+}
+
+.multiline { white-space: pre-line; }
+
+.section-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    margin-top: clamp(28px, 3vw, 44px);
+}
+
+.notice {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-left: 15px;
+    border-left: 2px solid var(--flush);
+    max-width: 46ch;
+}
+
+/* --- Training: copy and plate side by side ------------------------------- */
+
+.train-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(28px, 4vw, 60px);
+    align-items: start;
+}
+
+.train-titles { margin-bottom: 22px; }
+
+.train-titles h2 {
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+}
+
+.train-titles h2 + h2 { color: var(--flush); }
+
+.train-lede {
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    line-height: 1.6;
+    margin-bottom: 26px;
+    max-width: 54ch;
+}
+
+/* --- Locations ----------------------------------------------------------- */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(26px, 3vw, 48px);
+}
+
+.info-grid h3 { margin-bottom: 15px; }
+
+.stack { display: flex; flex-direction: column; gap: 13px; align-items: flex-start; }
+
+/* The street line underlines, not the postcode line beneath it, so the rule
+   sits at the baseline of the name rather than at the bottom of the block. */
+.addr {
+    text-decoration: none;
+    font-family: 'Onest', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    background-image: linear-gradient(var(--flush), var(--flush));
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    background-position: 0 calc(100% - 24px);
+    transition: background-size 300ms var(--ease);
+}
+
+.addr span {
+    display: block;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin-top: 6px;
+}
+
+.uline {
+    text-decoration: none;
+    padding-bottom: 2px;
+    background-image: linear-gradient(var(--flush), var(--flush));
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    transition: background-size 260ms var(--ease);
+}
+
+@media (hover: hover) {
+    .uline:hover { background-size: 100% 2px; }
+    .addr:hover { background-size: 100% 2px; }
+    .addr:hover span { color: var(--flush); }
+}
+
+/* =============================================================================
+   Footer
+   ============================================================================= */
+
+footer {
+    border-top: 1px solid var(--hair);
+    padding-block: 38px 26px;
+    background: var(--ground-2);
+}
+
+.foot-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px 44px;
+}
+
+.foot-legal { margin-right: auto; }
+
+.foot-legal .stack { gap: 8px; }
+
+.foot-legal a {
+    font-size: 14.5px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: color 170ms ease;
+}
+
+@media (hover: hover) {
+    .foot-legal a:hover { color: var(--flush); }
+}
+
+.social-icons { display: flex; gap: 7px; }
+
+/* Network marks carried over from the existing site. */
+.social-icon {
+    display: grid;
+    place-items: center;
+    width: 37px;
+    height: 37px;
+    border: 1px solid var(--hair);
+    border-radius: var(--radius);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 150ms var(--ease), background-color 190ms ease, color 190ms ease, border-color 190ms ease;
+}
+
+.social-icon svg { width: 16px; height: 16px; }
+.social-icon:active { transform: scale(0.94); }
+
+@media (hover: hover) {
+    .social-icon:hover { background: var(--ink); color: var(--ground); border-color: var(--ink); }
+    .social-icon.instagram:hover path { fill: url(#instagram-gradient); }
+}
+
+.social-icon.instagram path { fill: currentColor; }
+
+.copyright {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+}
+
+/* =============================================================================
+   Responsive
+   ============================================================================= */
+
+@media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero h1 { max-width: 18ch; }
+    .train-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+    body { font-size: 16px; }
+
+    /* The rail folds to a hairline gutter. The trace stays, narrower, because
+       it is the thing that ties the page together. */
+    :root { --rail: 18px; }
+
+    .row { column-gap: 14px; }
+    .trace path { opacity: 0.4; }
+
+    .section-foot { flex-direction: column; align-items: stretch; }
+    /* Full width, but the dot stays next to its label rather than being
+       flung to the far edge of the button. */
+    .actions .btn { flex: 1 1 100%; justify-content: flex-start; }
+    .plate--wide img { aspect-ratio: 4 / 3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn:active, .social-icon:active { transform: none; }
+    .btn:hover .btn-dot { transform: none; }
+    .uline, .addr { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f09433"/>
+            <stop offset="25%" stop-color="#e6683c"/>
+            <stop offset="50%" stop-color="#dc2743"/>
+            <stop offset="75%" stop-color="#cc2366"/>
+            <stop offset="100%" stop-color="#bc1888"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<header class="nav">
+    <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="ulamove">
+            <img src="../../images/ulamove_logo.png" alt="" width="26" height="26">
+            <span>ulamove</span>
+        </a>
+        <nav class="langs" aria-label="Sprache / Language">
+            <button class="lang-btn" data-lang="de" aria-pressed="true">DE</button>
+            <button class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            <button class="lang-btn" data-lang="ru" aria-pressed="false">RU</button>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+
+    <!-- Hero. One long breath: a single slow curve. --------------------------->
+    <section class="hero">
+        <div class="row">
+            <div class="rail" aria-hidden="true">
+                <div class="rail-track">
+                    <svg class="trace" viewBox="0 0 40 1000" preserveAspectRatio="none">
+                        <path d="M20,0 C36,120 36,380 20,500 C4,620 4,880 20,1000"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <p class="mono hero-place" data-i18n="location">Köln Mülheim • Köln Sülz</p>
+                    <h1 class="display" data-i18n="title">Gesundheit &amp; Wohlbefinden</h1>
+                    <p class="hero-sub" data-i18n="tagline">Wissenschaftlich fundierte Therapie &amp; achtsame Bewegung</p>
+                    <div class="actions">
+                        <!-- <a class="btn btn--fill" href="https://cal.com/ulamove/privattermin-physiotherapie" target="_blank" rel="noopener" data-i18n="physio-cta1"></a> -->
+                        <a class="btn btn--fill" href="https://cal.com/ulamove/privattermin-physiotherapie-copy" target="_blank" rel="noopener">
+                            <span class="btn-dot" aria-hidden="true"></span>
+                            <span data-i18n="physio-cta2">Termin Köln Sülz</span>
+                        </a>
+                    </div>
+                </div>
+                <figure class="plate plate--hero">
+                    <div class="plate-bar">
+                        <span class="mono" data-i18n="physio-btn">Physiotherapie &amp; Atemtherapie</span>
+                    </div>
+                    <img src="../../images/ulamove-physio.jpg" alt="Physiotherapie" width="725" height="745" fetchpriority="high">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Physiotherapie. Slow, deep breathing: long wavelength, wide amplitude. -->
+    <section class="section" aria-labelledby="physio-heading">
+        <div class="row">
+            <div class="rail" aria-hidden="true">
+                <div class="rail-track">
+                    <svg class="trace" viewBox="0 0 40 1000" preserveAspectRatio="none">
+                        <path d="M20,0 C33,60 33,190 20,250 C7,310 7,440 20,500 C33,560 33,690 20,750 C7,810 7,940 20,1000"/>
+                    </svg>
+                </div>
+            </div>
+            <div>
+                <div class="section-head">
+                    <h2 id="physio-heading" data-i18n="physio-btn">Physiotherapie &amp; Atemtherapie</h2>
+                </div>
+
+                <div class="groups">
+                    <article class="group">
+                        <h3 data-i18n="physio-group1">Atembezogene Beschwerden</h3>
+                        <p class="multiline" data-i18n="physio-group1-desc">z. B. COPD, Asthma, Emphysem, Lungenfibrose, Pneumonie, Long-COVID, postvirale Zustände, chronischer Husten, Dyspnoe und funktionelle Atemstörungen. 
+(Schwerpunkt: reflektorische Atemtherapie).</p>
+                    </article>
+                    <article class="group">
+                        <h3 data-i18n="physio-group2">Orthopädische, postoperative und chronische Beschwerden</h3>
+                        <p class="multiline" data-i18n="physio-group2-desc">z. B. Rücken- und Gelenkschmerzen, nach Operationen, funktionelle Dysbalancen sowie bei hoher körperlicher oder psychischer Belastung. 
+Ziel: Schmerzlinderung, bessere Schlafqualität, Regulation des Nervensystems und mehr Lebensqualität im Alltag.</p>
+                    </article>
+                </div>
+
+                <div class="section-foot">
+                    <p class="notice" data-i18n="physio-private">Nur für Privatpatient:innen / Selbstzahler:innen mit Rezept.</p>
+                    <div class="actions">
+                        <a class="btn btn--fill" href="https://cal.com/ulamove/privattermin-physiotherapie-copy" target="_blank" rel="noopener">
+                            <span class="btn-dot" aria-hidden="true"></span>
+                            <span data-i18n="physio-cta2">Termin Köln Sülz</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training. Active breathing: shorter wavelength, tighter amplitude. ---->
+    <section class="section" aria-labelledby="training-heading">
+        <div class="row">
+            <div class="rail" aria-hidden="true">
+                <div class="rail-track">
+                    <svg class="trace" viewBox="0 0 40 1000" preserveAspectRatio="none">
+                        <path d="M20,0 C30,30 30,95 20,125 C10,155 10,220 20,250 C30,280 30,345 20,375 C10,405 10,470 20,500 C30,530 30,595 20,625 C10,655 10,720 20,750 C30,780 30,845 20,875 C10,905 10,970 20,1000"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="train-grid">
+                <div>
+                    <div class="train-titles">
+                        <h2 id="training-heading" data-i18n="training-title-1">Therapeutisches Yoga Training</h2>
+                        <h2 data-i18n="training-title-2">Atemtraining</h2>
+                    </div>
+                    <p class="train-lede" data-i18n="training-desc">Für Prävention, Regeneration &amp; innere Balance. Individuelles, medizinisch fundiertes Training - für Menschen, die ihre Gesundheit gezielt stärken möchten, egal ob präventiv oder mit bestehenden Einschränkungen. In persönlichen Einheiten oder kleinen Gruppen entsteht Raum für Bewegung, Atmung und bewusste Körperarbeit - damit sich der Körper wieder kraftvoll, frei und lebendig anfühlt.</p>
+                    <div class="actions">
+                        <a class="btn btn--fill" href="../../training">
+                            <span class="btn-dot" aria-hidden="true"></span>
+                            <span data-i18n="training-cta">Mehr erfahren</span>
+                        </a>
+                        <a class="btn btn--line" href="https://cal.com/ulamove" target="_blank" rel="noopener">
+                            <span class="btn-dot" aria-hidden="true"></span>
+                            <span data-i18n="training-schedule">Aktueller Trainingsplan</span>
+                        </a>
+                    </div>
+                </div>
+                <figure class="plate plate--wide">
+                    <div class="plate-bar">
+                        <span class="mono" data-i18n="training-btn">Therapeutisches Yoga / Training &amp; Atemtraining</span>
+                    </div>
+                    <img src="../../images/ulamove-training.jpg" alt="Training" width="1024" height="1024" loading="lazy">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations. Close to a resting line. ---------------------------------->
+    <section class="section" aria-labelledby="info-heading">
+        <div class="row">
+            <div class="rail" aria-hidden="true">
+                <div class="rail-track">
+                    <svg class="trace" viewBox="0 0 40 1000" preserveAspectRatio="none">
+                        <path d="M20,0 C24,150 24,350 20,500 C16,650 16,850 20,1000"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div>
+                    <h3 class="mono" id="info-heading">Lokationen</h3>
+                    <div class="stack">
+                        <a class="addr" href="https://goo.gl/maps/bJMBpxYaZGF3QJdj6" target="_blank" rel="noopener">
+                            Düsseldorfer Straße 74
+                            <span>51063 Köln-Mülheim</span>
+                        </a>
+                        <a class="addr" href="https://maps.app.goo.gl/UfXQppQtye3kbV6V9" target="_blank" rel="noopener">
+                            Berrenrather Str. 136
+                            <span>50937 Köln-Sülz</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mono">Kontakt</h3>
+                    <div class="stack">
+                        <a class="uline" href="tel:01636970231">0163 / 697 02 31</a>
+                        <a class="uline" href="mailto:contact@ulamove.de">contact@ulamove.de</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mono">Folgen Sie mir</h3>
+                    <div class="social-icons">
+                        <a href="https://wa.me/491636970231" target="_blank" rel="noopener" class="social-icon whatsapp" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCIU9Seu8jZDRogf6vOAB3XA" target="_blank" rel="noopener" class="social-icon youtube" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/ula_move" target="_blank" rel="noopener" class="social-icon instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://www.patreon.com/ulamove" target="_blank" rel="noopener" class="social-icon patreon" aria-label="Patreon">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 .48v23.04h4.22V.48zm15.385 0c-4.764 0-8.641 3.88-8.641 8.65 0 4.755 3.877 8.623 8.641 8.623 4.75 0 8.615-3.868 8.615-8.623C24 4.36 20.136.48 15.385.48z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="row">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="foot-grid">
+            <div class="foot-legal">
+                <h3 class="mono" style="margin-bottom:14px">Rechtliches</h3>
+                <div class="stack">
+                    <a href="../../impressum">Impressum</a>
+                    <a href="../../datenshutz">Datenschutz</a>
+                </div>
+            </div>
+            <p class="copyright">&copy; Julia Sperling 2020</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ---------------------------------------------------------
+       Translations. The shared JSON files stay the single source
+       of text for switching languages. The German strings are ALSO
+       written into the markup, so the page is never blank: opened
+       over file:// (a double-click) or with JavaScript off, the
+       German is already there and this only overwrites it.
+       Consequence: a German copy change has to be made in both
+       translations/de.json and the markup.
+       --------------------------------------------------------- */
+
+    var cache = {};
+
+    function loadTranslations(lang) {
+        if (cache[lang]) return Promise.resolve(cache[lang]);
+        return fetch('../../translations/' + lang + '.json')
+            .then(function (r) { return r.json(); })
+            .then(function (json) { cache[lang] = json; return json; })
+            .catch(function (err) {
+                /* Opened over file:// the browser blocks fetch, so the static
+                   German in the markup stays. Only DE/EN/RU switching needs
+                   a server. */
+                console.warn('Translations for ' + lang + ' unavailable, keeping the text in the markup:', err.message);
+                return {};
+            });
+    }
+
+    function applyTranslations(t) {
+        var nodes = document.querySelectorAll('[data-i18n]');
+        for (var i = 0; i < nodes.length; i++) {
+            var key = nodes[i].getAttribute('data-i18n');
+            if (t[key]) nodes[i].textContent = t[key];
+        }
+    }
+
+    var langButtons = Array.prototype.slice.call(document.querySelectorAll('.lang-btn'));
+
+    langButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            langButtons.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+
+            var lang = btn.getAttribute('data-lang');
+            document.documentElement.lang = lang;
+            loadTranslations(lang).then(applyTranslations);
+        });
+    });
+
+    loadTranslations('de').then(applyTranslations);
+})();
+</script>
+</body>
+</html>

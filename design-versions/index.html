@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ulamove • Design-Versionen</title>
+<link rel="icon" type="image/png" href="../images/ulamove_logo.png">
+<style>
+:root {
+    color-scheme: light dark;
+    --bg: #FFFFFF;
+    --fg: #14161A;
+    --muted: #6B7280;
+    --line: rgba(20, 22, 26, 0.14);
+    --panel: #F6F7F8;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #101215;
+        --fg: #E9EBEE;
+        --muted: #939AA4;
+        --line: rgba(233, 235, 238, 0.16);
+        --panel: #181B1F;
+    }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background: var(--bg);
+    color: var(--fg);
+    font: 15px/1.6 ui-sans-serif, system-ui, sans-serif;
+    padding: 40px 24px 64px;
+}
+.wrap { max-width: 900px; margin: 0 auto; }
+h1 { font-size: 24px; letter-spacing: -0.02em; margin-bottom: 6px; }
+.lede { color: var(--muted); margin-bottom: 34px; max-width: 62ch; }
+ol { list-style: none; display: grid; gap: 14px; }
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+    transition: transform 150ms ease, border-color 150ms ease;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--fg); }
+.card:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.card h2 { font-size: 17px; letter-spacing: -0.01em; margin-bottom: 4px; }
+.card .skill {
+    font: 500 11px/1 ui-monospace, monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 10px;
+}
+.card p { color: var(--muted); font-size: 14px; }
+.swatches { display: flex; gap: 5px; margin-top: 14px; }
+.swatches i { width: 22px; height: 22px; border-radius: 4px; border: 1px solid var(--line); }
+.foot { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.foot a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>ulamove: drei Design-Richtungen</h1>
+    <p class="lede">Gleicher Text, gleiche Links, gleiche Übersetzungen (DE / EN / RU). Nur die
+        Gestaltung unterscheidet sich. Über einen lokalen Server öffnen, damit die
+        Übersetzungsdateien geladen werden können.</p>
+
+    <ol>
+        <li>
+            <a class="card" href="v1-emil/">
+                <span class="skill">Version 1 · emil-design-eng</span>
+                <h2>Tinte auf Papier</h2>
+                <p>Warmes Papier, ein einziger Akzent, Literata als Display-Serif. Die Arbeit
+                    steckt in der Bewegung: der Umschalter färbt sich über eine clip-path-Maske,
+                    die Panels wechseln mit Höhenanimation und leichtem Blur, die Atemfigur im
+                    Hero atmet 4 Sekunden ein und 6 Sekunden aus. Behält den Umschalter zwischen
+                    beiden Angeboten.</p>
+                <span class="swatches" aria-hidden="true">
+                    <i style="background:#F1EDE6"></i><i style="background:#191512"></i><i style="background:#B4441F"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="card" href="v2-taste/">
+                <span class="skill">Version 2 · design-taste-frontend</span>
+                <h2>Klinisch-redaktionell</h2>
+                <p>Tiefes Waldgrün, kühles Bone, ein Amber-Akzent, Wix Madefor als Schriftsystem.
+                    Keine Rundungen, keine Tabs:
+                    beide Angebote stehen als eigene Abschnitte auf der Seite, verbunden über
+                    eine klebende Abschnittsleiste. Der Regenbogen des Logos erscheint genau
+                    zweimal, als 3px-Leiste oben und als großer Farbwisch.</p>
+                <span class="swatches" aria-hidden="true">
+                    <i style="background:#EDEFEA"></i><i style="background:#14231E"></i><i style="background:#D99A2B"></i>
+                </span>
+            </a>
+        </li>
+        <li>
+            <a class="card" href="v3-frontend/">
+                <span class="skill">Version 3 · frontend-design</span>
+                <h2>Atemkurve</h2>
+                <p>Blasses Cyanweiß, tiefes Petrol, Magenta aus dem obersten Pinselstrich des
+                    Logos. Onest, Golos Text und JetBrains Mono in drei klaren Rollen. Links läuft eine Atemkurve durch jeden Abschnitt und zeichnet sich
+                    beim Scrollen selbst: langsam und tief bei der Therapie, schneller beim
+                    Training, fast Ruhelinie bei den Adressen.</p>
+                <span class="swatches" aria-hidden="true">
+                    <i style="background:#EDF3F4"></i><i style="background:#0C2A38"></i><i style="background:#D6006E"></i>
+                </span>
+            </a>
+        </li>
+    </ol>
+
+    <p class="foot">Zum Vergleich: <a href="../index.html">bisherige Startseite</a></p>
+</div>
+</body>
+</html>
